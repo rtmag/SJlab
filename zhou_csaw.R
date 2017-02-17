@@ -44,8 +44,18 @@ binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 
 normfacs <- normOffsets(binned)
 
+cat *broadPeak| sort -k1,1 -k2,2n|bedtools merge -i - >Broadpeak_merged.bed
+
+regions=bed_to_granges("BROADPEAK_TSS.bed")
+ counts <- regionCounts(bam.files, regions, ext=300, param=param)
+
+
 require(DESeq2)
 
-binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 
-regionCounts(bam.files, regions, ext=100, param=readParam())
+colData <- data.frame(group=colnames(countData))
+dds <- DESeqDataSetFromMatrix(
+       countData = countData,
+       colData = colData,
+       design = ~ group)
+rld <- rlogTransformation( dds )
