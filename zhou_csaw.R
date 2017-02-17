@@ -1,10 +1,50 @@
+ 
+bed_to_granges <- function(file){
+   df <- read.table(file,
+                    header=F,
+                    stringsAsFactors=F)
+ 
+   if(length(df) > 6){
+      df <- df[,-c(7:length(df))]
+   }
+ 
+   if(length(df)<3){
+      stop("File has less than 3 columns")
+   }
+ 
+   header <- c('chr','start','end','id','score','strand')
+   names(df) <- header[1:length(names(df))]
+ 
+   if('strand' %in% colnames(df)){
+      df$strand <- gsub(pattern="[^+-]+", replacement = '*', x = df$strand)
+   }
+ 
+   library("GenomicRanges")
+ 
+   if(length(df)==3){
+      gr <- with(df, GRanges(chr, IRanges(start, end)))
+   } else if (length(df)==4){
+      gr <- with(df, GRanges(chr, IRanges(start, end), id=id))
+   } else if (length(df)==5){
+      gr <- with(df, GRanges(chr, IRanges(start, end), id=id, score=score))
+   } else if (length(df)==6){
+      gr <- with(df, GRanges(chr, IRanges(start, end), id=id, score=score, strand=strand))
+   }
+   return(gr)
+}
+
 
 require(csaw)
 
-param <- readParam(minq=10)
-data <- windowCounts(bam.files, ext=110, width=10, param=param)
+blacklist=bed_to_granges("wgEncodeHg19ConsensusSignalArtifactRegions.bed")
+param <- readParam(minq=10,discard=blacklist)
+bam.files <- c("CA2_rmdup.bam", "TA2_rmdup.bam", "Cac_rmdup.bam", "Tac_rmdup.bam")
 
- require(DESeq2)
+binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
+
+normfacs <- normOffsets(binned)
+
+require(DESeq2)
 
 binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 
