@@ -44,9 +44,10 @@ binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 
 normfacs <- normOffsets(binned)
 
-cat *broadPeak| sort -k1,1 -k2,2n|bedtools merge -i - >Broadpeak_merged.bed
+#cat *broadPeak| sort -k1,1 -k2,2n|bedtools merge -i - >Broadpeak_merged.bed
 
-regions=bed_to_granges("BROADPEAK_TSS.bed")
+#regions=bed_to_granges("BROADPEAK_TSS.bed")
+regions=bed_to_granges("BROADPEAK_741.bed")
  counts <- regionCounts(bam.files, regions, ext=300, param=param)
 countData=assay(counts)
 colnames(countData)=bam.files
