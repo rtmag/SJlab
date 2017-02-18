@@ -64,3 +64,9 @@ sizeFactors(dds) <- normfacs
 
 
 rld <- rlogTransformation( dds )
+
+x=assay(rld)
+postscript("acH2AZ_H2AZ.ps")
+boxplot((x[,3]/x[,1]),(x[,4]/x[,1]),outline=0,border=c("blue","goldenrod4"),width=c(4,4),names=c("siControl","siTIP60A"),ylab="acH2Az/H2AZ across peaks at TSS ")
+dev.off()
+
