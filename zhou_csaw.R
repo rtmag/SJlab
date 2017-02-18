@@ -48,14 +48,18 @@ cat *broadPeak| sort -k1,1 -k2,2n|bedtools merge -i - >Broadpeak_merged.bed
 
 regions=bed_to_granges("BROADPEAK_TSS.bed")
  counts <- regionCounts(bam.files, regions, ext=300, param=param)
-
+countData=assay(counts)
+colnames(countData)=bam.files
 
 require(DESeq2)
-
 
 colData <- data.frame(group=colnames(countData))
 dds <- DESeqDataSetFromMatrix(
        countData = countData,
        colData = colData,
        design = ~ group)
+dds <- estimateSizeFactors(dds)
+sizeFactors(dds) <- normfacs
+
+
 rld <- rlogTransformation( dds )
