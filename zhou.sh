@@ -1,24 +1,26 @@
  cut -f1 DEG_NAME_log2FC_0.05.txt > DEG_NAME_0.05.txt
  
   more hg19_tss_2kb.bed |grep -w -f DEG_NAME_0.05.txt > DEG_0.05_hg19_tss_2kb.bed
-  
+
+  more DEG_NAME_log2FC_0.05.txt | awk '{if($2<0){print $1"\t"$2}}' > DEG_NAME_log2FC_0.05_DOWN.txt
+
   more DEG_NAME_log2FC_0.05.txt | awk '{if($2<0){print $1}}' > DEG_NAME_0.05_DOWN.txt
   
   bedtools intersect -a DEG_0.05_hg19_tss_2kb.bed -b Ac_res.bed |grep -w -f DEG_NAME_0.05_DOWN.txt | wc -l
 
 ##
-more hg19_tssOnly_canonical_full.bed|grep -v "#"| awk -F  "\t" '{print $1"\t"$2-2000"\t"$2+2000"\t"$4"\t"4000"\t"$6}' > hg19_tssOnly_canonical_2kb.bed
+more hg19_tssOnly_canonical_full.bed|grep -v "#"| awk -F  "\t" '{print $1"\t"$2-2000"\t"$2+2000"\t"$4"\t"4000"\t"$6}' > \
+hg19_tssOnly_canonical_2kb.bed
 
 more hg19_tssOnly_canonical_2kb.bed| grep -w -f DEG_NAME_0.05_DOWN.txt| bedtools intersect -a - -b Ac_res.bed | wc -l
 
 
-
-more hg19_tss_2kb.bed| grep -w -f DEG_NAME_0.05_DOWN.txt| bedtools intersect -a - -b Ac_res.bed | bedtools intersect -a - -b A2_merged_regions.bed | wc -l 
+more hg19_tss_2kb.bed| grep -w -f DEG_NAME_0.05_DOWN.txt| bedtools intersect -a - -b Ac_res.bed | \
+bedtools intersect -a - -b A2_merged_regions.bed | wc -l 
 
 # AC
 
 #####
-  more DEG_NAME_log2FC_0.05.txt | awk '{if($2<0){print $1"\t"$2}}' > DEG_NAME_log2FC_0.05_DOWN.txt
 
 
  x=read.table("kegg_mini.txt",sep="\t",header=T)
@@ -102,4 +104,20 @@ postscript("volcano.ps", width= 100, height= 100)
  abline(h=-log10(.05), col ='grey')
  #legend("topright", "523", bty="n",cex=2,col="goldenrod4") 
  #legend("topleft", "850", bty="n",cex=2,col="darkblue") 
+dev.off()
+
+
+
+
+postscript("volcano_TSSpeak_regions.ps", width= 100, height= 100)
+ smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
+ p.ix= x$log2FoldChange>1 & x$padj<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
+ p.ix= x$log2FoldChange<(-1) & x$padj<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="darkblue", pch = 16)
+ abline(v=1, col ='grey',lty = 2);
+ abline(v=(-1), col ='grey',lty = 2);
+ abline(h=-log10(.05), col ='grey',lty = 2)
+
+
 dev.off()
