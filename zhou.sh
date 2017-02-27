@@ -89,4 +89,17 @@ plot(colMeans(datas[,1:400]),type="l",xlab="TSS",xaxt='n', col="darkblue",lwd=3,
 lines(colMeans(datas[,401:800]),type="l",col="goldenrod4",lwd=3)
 Axis(side=1, labels=c("-2KB","0","2KB"),at=c(0,200,400))
 legend("topright", legend=c("siC","siT"), fill=c('darkblue','goldenrod4'), bty = "n",border=NA)
-
+##
+x=readRDS("dLRT_res.rds")
+library(graphics)
+postscript("volcano.ps", width= 100, height= 100)
+ smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
+ p.ix= x$log2FoldChange>1 & x$padj<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
+ p.ix= x$log2FoldChange<(-1) & x$padj<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="darkblue", pch = 16)
+ abline(v=1, col ='grey');abline(v=(-1), col ='grey');
+ abline(h=-log10(.05), col ='grey')
+ #legend("topright", "523", bty="n",cex=2,col="goldenrod4") 
+ #legend("topleft", "850", bty="n",cex=2,col="darkblue") 
+dev.off()
