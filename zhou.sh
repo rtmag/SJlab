@@ -19,6 +19,12 @@ more hg19_tss_2kb.bed| grep -w -f DEG_NAME_0.05_DOWN.txt| bedtools intersect -a 
 bedtools intersect -a - -b A2_merged_regions.bed | wc -l 
 
 # AC
+more hg19_tss_2kb.bed| grep -w -f DEG_NAME_0.05_DOWN.txt| bedtools intersect -a - -b Ac_res.bed -wa -wb|grep -w "Down"| cut -f4|sort|uniq > INTEGRON_rna_ach2az.txt
+more DEG_NAME_log2FC_0.05_DOWN.txt |grep -w -f INTEGRON_rna_ach2az.txt > DEG_NAME_log2FC_0.05_DOWN_integrated_with_ACh2az.txt
+
+more hg19_tss_2kb.bed| grep -w -f DEG_NAME_0.05_UP.txt| bedtools intersect -a - -b Ac_res.bed -wa -wb| cut -f4|sort|uniq > INTEGRON_rna_ach2az_down.txt
+more DEG_NAME_log2FC_0.05_DOWN.txt |grep -w -f INTEGRON_rna_ach2az.txt > DEG_NAME_log2FC_0.05_DOWN_integrated_with_ACh2az.txt
+
 
 #####
 
@@ -107,9 +113,15 @@ postscript("volcano.ps", width= 100, height= 100)
 dev.off()
 
 
+down=read.table("../17_feb/741_genes.txt")
+down=down$V1
+down.ix=which(rownames(x) %in% as.character(down))
 
+up=read.table("../UPPPP.txt")
+up=up$V1
+up.ix=which((rownames(x) %in% as.character(up)) & abs(x$log2FoldChange)>1 )
 
-postscript("volcano_TSSpeak_regions.ps", width= 100, height= 100)
+postscript("volcano_TSSpeak_regions.ps", width= 50, height= 50)
  smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
  p.ix= x$log2FoldChange>1 & x$padj<0.05
  points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
@@ -118,6 +130,8 @@ postscript("volcano_TSSpeak_regions.ps", width= 100, height= 100)
  abline(v=1, col ='grey',lty = 2);
  abline(v=(-1), col ='grey',lty = 2);
  abline(h=-log10(.05), col ='grey',lty = 2)
+ points(x$log2FoldChange[up.ix],-log10(x$padj[up.ix]),pch = 4,col="red")
+ points(x$log2FoldChange[down.ix],-log10(x$padj[down.ix]), pch = 4,col="red")
 
 
 dev.off()
