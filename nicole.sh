@@ -39,3 +39,13 @@ STAR --genomeDir ~/resources/star_index_overhang100/ \
 /home/rtm/SJlab/nicole/bgi/cdts-hk.genomics.cn/F16FTSAPHT0948_HUMgqaE/Clean/TIP60-siK/FCHCYTLBBXX_L8_HKRDHUMgqaEAADRAAPEI-205_2.fq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/TIP60-siK_
+
+##########
+
+samtools merge TIP60-siC.bam ../bam/TIP60-siC_L7_Aligned.out.bam ../bam/TIP60-siC_L4_Aligned.out.bam
+samtools merge TIP60-siK.bam ../bam/TIP60-siK_L7_Aligned.out.bam ../bam/TIP60-siK_L4_Aligned.out.bam
+
+samtools merge LPCX-siC.bam ../bam/LPCX-siC_L7_Aligned.out.bam ../bam/LPCX-siC_L4_Aligned.out.bam
+samtools merge LPCX-siK.bam ../bam/LPCX-siK_L7_Aligned.out.bam ../bam/LPCX-siK_L4_Aligned.out.bam
+
+samtools merge LPCX.bam ../bam/LPCX_L4_Aligned.out.bam ../bam/LPCX_L7_Aligned.out.bam
