@@ -23,3 +23,10 @@ autosort=TRUE,
 nthreads=15,
 GTF.attrType="gene_name"
 )
+
+
+colnames(data[[1]])<-c("r1_LPCX_siC","r1_LPCX_siK","r1_TIP60_siC","r1_TIP60_siK",
+                       "r2_LPCX_siC","r2_LPCX_siK","r2_TIP60_siC","r2_TIP60_siK")
+write.csv(data[[1]],file="r1r2_counts.csv")
+countData<-data[[1]]
+
