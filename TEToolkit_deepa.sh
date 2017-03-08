@@ -41,3 +41,19 @@ STAR --genomeDir /home/rtm/resources/hg38/star/star_hg38_overhang100 \
 --outFileNamePrefix HCT_siK_
 
 ##
+~/myPrograms/tetoolkit/bin/TEtranscripts  --sortByPos --format BAM --mode multi \
+-c /home/rtm/SJlab/deepa/bam/HCT_DMSO_Aligned.sortedByCoord.out.bam \
+-t /home/rtm/SJlab/deepa/bam/HCT_JQ1_Aligned.sortedByCoord.out.bam \
+--GTF ~/resources/hg38/star/gencode.v25.annotation.gtf \
+--TE ~/SJlab/deepa/hg38_rmsk_TE.gtf \
+--project DMSO_vs_JQ1
+
+~/myPrograms/tetoolkit/bin/TEtranscripts --sortByPos --format BAM --mode multi  \
+-c /home/rtm/SJlab/deepa/bam/HCT_siC_Aligned.sortedByCoord.out.bam \
+-t /home/rtm/SJlab/deepa/bam/HCT_siK_Aligned.sortedByCoord.out.bam \
+--GTF ~/resources/hg38/star/gencode.v25.annotation.gtf \
+--TE ~/SJlab/deepa/hg38_rmsk_TE.gtf \
+--project siC_vs_siK
+
+
+
