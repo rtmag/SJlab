@@ -40,6 +40,9 @@ STAR --genomeDir /home/rtm/resources/hg38/star/star_hg38_overhang100 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix HCT_siK_
 
+# INSTALLATION NOTE
+# WROKS WITH PYSAM 8.4: pip install pysam==0.8.4
+
 ##
 ~/myPrograms/tetoolkit/bin/TEtranscripts  --sortByPos --format BAM --mode multi \
 -c /home/rtm/SJlab/deepa/bam/HCT_DMSO_Aligned.sortedByCoord.out.bam \
