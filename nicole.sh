@@ -49,3 +49,38 @@ samtools merge LPCX-siC.bam ../bam/LPCX-siC_L7_Aligned.out.bam ../bam/LPCX-siC_L
 samtools merge LPCX-siK.bam ../bam/LPCX-siK_L7_Aligned.out.bam ../bam/LPCX-siK_L4_Aligned.out.bam
 
 samtools merge LPCX.bam ../bam/LPCX_L4_Aligned.out.bam ../bam/LPCX_L7_Aligned.out.bam
+
+#####
+
+STAR --genomeDir ~/resources/star_index_overhang100/ \
+--readFilesCommand zcat \
+--runThreadN 15 \
+--readFilesIn /home/rtm/SJlab/nicole/Nicole-HeLa_siC_siK_Feb_2015/FCC6M77ACXX-HUMedoEAAARAAPEI-207_L4_1.fq.gz \
+/home/rtm/SJlab/nicole/Nicole-HeLa_siC_siK_Feb_2015/FCC6M77ACXX-HUMedoEAAARAAPEI-207_L4_2.fq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/feb2015_207_
+
+STAR --genomeDir ~/resources/star_index_overhang100/ \
+--readFilesCommand zcat \
+--runThreadN 15 \
+--readFilesIn /home/rtm/SJlab/nicole/Nicole-HeLa_siC_siK_Feb_2015/FCC6M77ACXX-HUMedoEAABRAAPEI-208_L4_1.fq.gz \
+/home/rtm/SJlab/nicole/Nicole-HeLa_siC_siK_Feb_2015/FCC6M77ACXX-HUMedoEAABRAAPEI-208_L4_2.fq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/feb2015_208_
+
+
+STAR --genomeDir ~/resources/star_index_overhang100/ \
+--readFilesCommand zcat \
+--runThreadN 15 \
+--readFilesIn /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HeLa_LPCX/FCC55PTACXX_L8_WHHUMhteEAAARAAPEI-95_1.fq \
+/home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HeLa_LPCX/FCC55PTACXX_L8_WHHUMhteEAAARAAPEI-95_2.fq \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/vanitha_LPCX_
+
+STAR --genomeDir ~/resources/star_index_overhang100/ \
+--readFilesCommand zcat \
+--runThreadN 15 \
+--readFilesIn /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HELa_TIP60/FCC55PTACXX_L8_WHHUMhteEAABRAAPEI-113_1.fq \
+/home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HELa_TIP60/FCC55PTACXX_L8_WHHUMhteEAABRAAPEI-113_2.fq \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/vanitha_TIP60_
