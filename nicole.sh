@@ -70,7 +70,6 @@ STAR --genomeDir ~/resources/star_index_overhang100/ \
 
 
 STAR --genomeDir ~/resources/star_index_overhang100/ \
---readFilesCommand zcat \
 --runThreadN 15 \
 --readFilesIn /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HeLa_LPCX/FCC55PTACXX_L8_WHHUMhteEAAARAAPEI-95_1.fq \
 /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HeLa_LPCX/FCC55PTACXX_L8_WHHUMhteEAAARAAPEI-95_2.fq \
@@ -78,7 +77,6 @@ STAR --genomeDir ~/resources/star_index_overhang100/ \
 --outFileNamePrefix /home/rtm/SJlab/nicole/bgi/bam/vanitha_LPCX_
 
 STAR --genomeDir ~/resources/star_index_overhang100/ \
---readFilesCommand zcat \
 --runThreadN 15 \
 --readFilesIn /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HELa_TIP60/FCC55PTACXX_L8_WHHUMhteEAABRAAPEI-113_1.fq \
 /home/rtm/SJlab/nicole/Vanitha_RNA_seq_2014/Clean/HELa_TIP60/FCC55PTACXX_L8_WHHUMhteEAABRAAPEI-113_2.fq \
