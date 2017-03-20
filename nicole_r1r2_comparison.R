@@ -21,9 +21,22 @@ design<-data.frame(experiment=colnames(countData[,c(3,4,7,8)]), batch = c("r1","
                                             treatment = c("siC","siK", "siC","siK") )
 
 dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(3,4,7,8)], colData = design, design = ~ batch + treatment )
-dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + treatment , reduced=~ treatment )
+dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + treatment , reduced=~ batch )
 dDif_res <- results(dLRT,contrast=c("treatment","siC","siK"))
 
 export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>.5),]
 write.csv(export,"TIP60-siC_TIP60-siK_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
 write.csv(dDif_res,"TIP60-siC_TIP60-siK_r1r2_DEG_revised_all.csv")
+
+
+# 3 LPCX
+design<-data.frame(experiment=colnames(countData[,c(1,2,5,6)]), batch = c("r1","r1","r2","r2"),
+                                            treatment = c("LPCX_siC","LPCX_siK", "LPCX_siC","LPCX_siK") )
+
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,2,5,6)], colData = design, design = ~ batch + treatment )
+dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + treatment , reduced=~ batch )
+dDif_res <- results(dLRT,contrast=c("treatment","LPCX_siC","LPCX_siK"))
+
+export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>.5),]
+write.csv(export,"LPCX-siC_LPCX-siK_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
+write.csv(dDif_res,"LPCX-siC_LPCX-siK_r1r2_DEG_revised_all.csv")
