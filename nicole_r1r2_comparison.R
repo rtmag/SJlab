@@ -40,3 +40,34 @@ dDif_res <- results(dLRT,contrast=c("treatment","LPCX_siC","LPCX_siK"))
 export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>.5),]
 write.csv(export,"LPCX-siC_LPCX-siK_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
 write.csv(dDif_res,"LPCX-siC_LPCX-siK_r1r2_DEG_revised_all.csv")
+
+#####################
+
+
+
+
+# r1 LPCX VS TIP60 
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(1,3)],
+       colData = data.frame(group=c("LPCX","TIP60")),
+       design = ~ group)
+rld <- rlogTransformation( dds )
+res1 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],LPCX=countData[,1],TIP60=countData[,2])
+
+# r2 LPCX VS TIP60 
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(5,7)],
+       colData = data.frame(group=c("LPCX","TIP60")),
+       design = ~ group)
+rld <- rlogTransformation( dds )
+res2 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],LPCX=countData[,1],TIP60=countData[,2])
+
+
+
+
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(3,4)],
+       colData = data.frame(group=c("siC","siK")),
+       design = ~ group)
+rld <- rlogTransformation( dds )
+res <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],siC=countData[,1],siK=countData[,2])
