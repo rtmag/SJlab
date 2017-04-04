@@ -76,7 +76,7 @@ dds <- DESeqDataSetFromMatrix(
        colData = data.frame(group=c("siC","siK")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res3 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,4]+1)/sum(countData[,4]))-log2((countData[,3]+1)/sum(countData[,3])) ,siC=countData[,3],siK=countData[,4],siC_norm=log2((countData[,3]+1)/sum(countData[,3])),siK_norm=log2((countData[,4]+1)/sum(countData[,4])))
+res3 <- data.frame(rLogFC = assay(rld)[,1] - assay(rld)[,2],Log2FC= log2((countData[,3]+1)/sum(countData[,3]))-log2((countData[,4]+1)/sum(countData[,4])) ,siC=countData[,3],siK=countData[,4],siC_norm=log2((countData[,3]+1)/sum(countData[,3])),siK_norm=log2((countData[,4]+1)/sum(countData[,4])))
 res3.1=res3[which(res3[,3]>300 | res3[,4]>300),]
 #head(res3[order(-abs(res3$Log2FC)),],100)
 head(res3.1[order(-abs(res3.1$Log2FC)),],10)
@@ -88,8 +88,17 @@ dds <- DESeqDataSetFromMatrix(
        colData = data.frame(group=c("siC","siK")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res4 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,8]+1)/sum(countData[,8]))-log2((countData[,7]+1)/sum(countData[,7])) ,siC=countData[,7],siK=countData[,8],siC_norm=log2((countData[,7]+1)/sum(countData[,7])),siK_norm=log2((countData[,8]+1)/sum(countData[,8])))
+res4 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,7]+1)/sum(countData[,7]))-log2((countData[,8]+1)/sum(countData[,8])) ,siC=countData[,7],siK=countData[,8],siC_norm=log2((countData[,7]+1)/sum(countData[,7])),siK_norm=log2((countData[,8]+1)/sum(countData[,8])))
 res4.1=res4[which(res4[,3]>300 | res4[,4]>300),]
 #head(res4[order(-abs(res4$Log2FC)),],100)
 head(res4.1[order(-abs(res4.1$Log2FC)),],10)
 #####################
+
+
+
+
+                                                     
+
+r1r2_log2fc=rownames(res3.1)[which(rownames(res3.1)[res3.1$Log2FC<(-0.5)] %in% rownames(res4.1)[res4.1$Log2FC<(-0.5)])]
+
+ rownames(export)[export$log2FoldChange<(-.5)]
