@@ -6,6 +6,14 @@ awk -F  "\t" \
 '{if($4=="+"){print $1"\t"$2-2000"\t"$2"\t"$5"\t"1000"\t"$4} if($4=="-"){print $1"\t"$3"\t"$3+2000"\t"$5"\t"1000"\t"$4} }' \
 > hg19_tss_2kb.bed
 
+
+# TSS 5kb upstream 1kb dw
+more ~/backup/CSI/SJlab/14_feb/hg19_tssOnly_canonical_full.bed |cut -f 1,2,3,5,6|grep -v "#"| \
+awk -F  "\t" \
+'{if($4=="+"){print $1"\t"$2-5000"\t"$2+1000"\t"$5"\t"1000"\t"$4} if($4=="-"){print $1"\t"$3-1000"\t"$3+5000"\t"$5"\t"1000"\t"$4} }' \
+> hg19_tss_5kb_1kb.bed
+
+
 #####
 
 STAR --genomeDir ~/resources/star_index_overhang100/ \
