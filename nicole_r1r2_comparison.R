@@ -102,3 +102,13 @@ head(res4.1[order(-abs(res4.1$Log2FC)),],10)
 r1r2_log2fc=rownames(res3.1)[which(rownames(res3.1)[res3.1$Log2FC<(-0.5)] %in% rownames(res4.1)[res4.1$Log2FC<(-0.5)])]
 
  rownames(export)[export$log2FoldChange<(-.5)]
+
+
+
+#########
+
+more hg19_tss_5kb_1kb.bed |grep -w -f replicates_tip60siC-siK_dwregulated.txt > replicates_tip60siC-siK_dwregulated_hg19_tss.txt
+more hg19_tss_5kb_1kb.bed |grep -w -f replicates_tip60siC-siK_upregulated.txt > replicates_tip60siC-siK_upregulated_hg19_tss.txt
+
+bedtools intersect -a HelaS3DukeDNaseSeq.pk -b replicates_tip60siC-siK_dwregulated_hg19_tss.txt > DNASE_replicates_tip60siC-siK_dwregulated_hg19_tss.txt 
+bedtools intersect -a HelaS3DukeDNaseSeq.pk -b replicates_tip60siC-siK_upregulated_hg19_tss.txt > DNASE_replicates_tip60siC-siK_upregulated_hg19_tss.txt 
