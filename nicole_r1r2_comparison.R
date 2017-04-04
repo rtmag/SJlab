@@ -76,7 +76,7 @@ dds <- DESeqDataSetFromMatrix(
        colData = data.frame(group=c("siC","siK")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res3 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,4]+1)/sum(countData[,4]))-log2((countData[,3]+1)/sum(countData[,3])) ,siC=countData[,4],siK=countData[,3],siC_norm=log2((countData[,3]+1)/sum(countData[,3])),siK_norm=log2((countData[,4]+1)/sum(countData[,4])))
+res3 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,4]+1)/sum(countData[,4]))-log2((countData[,3]+1)/sum(countData[,3])) ,siC=countData[,3],siK=countData[,4],siC_norm=log2((countData[,3]+1)/sum(countData[,3])),siK_norm=log2((countData[,4]+1)/sum(countData[,4])))
 res3.1=res3[which(res3[,3]>300 | res3[,4]>300),]
 #head(res3[order(-abs(res3$Log2FC)),],100)
 head(res3.1[order(-abs(res3.1$Log2FC)),],10)
