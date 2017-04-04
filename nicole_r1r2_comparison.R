@@ -52,7 +52,11 @@ dds <- DESeqDataSetFromMatrix(
        colData = data.frame(group=c("LPCX","TIP60")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res1 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],LPCX=countData[,1],TIP60=countData[,2])
+res1 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,3]+1)/sum(countData[,3]))-log2((countData[,1]+1)/sum(countData[,1])) ,LPCX=countData[,1],TIP60=countData[,3],LPCX_norm=log2((countData[,1]+1)/sum(countData[,1])),TIP60_norm=log2((countData[,3]+1)/sum(countData[,3])))
+res1.1=res1[which(res1[,3]>300 | res1[,4]>300),]
+head(res1[order(-abs(res1$Log2FC)),],100)
+head(res1.1[order(-abs(res1.1$Log2FC)),],10)
+res1
 
 # r2 LPCX VS TIP60 
 dds <- DESeqDataSetFromMatrix(
@@ -60,14 +64,32 @@ dds <- DESeqDataSetFromMatrix(
        colData = data.frame(group=c("LPCX","TIP60")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res2 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],LPCX=countData[,1],TIP60=countData[,2])
+res2 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,7]+1)/sum(countData[,7]))-log2((countData[,5]+1)/sum(countData[,5])) ,LPCX=countData[,5],TIP60=countData[,7],LPCX_norm=log2((countData[,5]+1)/sum(countData[,5])),TIP60_norm=log2((countData[,7]+1)/sum(countData[,7])))
+res2.1=res2[which(res2[,3]>300 | res2[,4]>300),]
+head(res2[order(-abs(res2$Log2FC)),],100)
+head(res2.1[order(-abs(res2.1$Log2FC)),],10)
 
-
-
+# r1 TIP60_siC VS TIP60_siK
 
 dds <- DESeqDataSetFromMatrix(
        countData = countData[,c(3,4)],
        colData = data.frame(group=c("siC","siK")),
        design = ~ group)
 rld <- rlogTransformation( dds )
-res <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],siC=countData[,1],siK=countData[,2])
+res3 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,4]+1)/sum(countData[,4]))-log2((countData[,3]+1)/sum(countData[,3])) ,siC=countData[,4],siK=countData[,3],siC_norm=log2((countData[,3]+1)/sum(countData[,3])),siK_norm=log2((countData[,4]+1)/sum(countData[,4])))
+res3.1=res3[which(res3[,3]>300 | res3[,4]>300),]
+#head(res3[order(-abs(res3$Log2FC)),],100)
+head(res3.1[order(-abs(res3.1$Log2FC)),],10)
+
+# r2 TIP60_siC VS TIP60_siK
+
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(7,8)],
+       colData = data.frame(group=c("siC","siK")),
+       design = ~ group)
+rld <- rlogTransformation( dds )
+res4 <- data.frame(rLogFC = assay(rld)[,2] - assay(rld)[,1],Log2FC= log2((countData[,8]+1)/sum(countData[,8]))-log2((countData[,7]+1)/sum(countData[,7])) ,siC=countData[,7],siK=countData[,8],siC_norm=log2((countData[,7]+1)/sum(countData[,7])),siK_norm=log2((countData[,8]+1)/sum(countData[,8])))
+res4.1=res4[which(res4[,3]>300 | res4[,4]>300),]
+#head(res4[order(-abs(res4$Log2FC)),],100)
+head(res4.1[order(-abs(res4.1$Log2FC)),],10)
+#####################
