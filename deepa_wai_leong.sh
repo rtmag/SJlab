@@ -14,7 +14,7 @@ mkdir star_hg38_gencode26_overhang149
 --readFilesCommand zcat \
 --runThreadN 35 \
 --readFilesIn /home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R1_001.fastq.gz \
-/home/roberto/deepa/tam_wai_leong/Sample_RHC8268/RHC8260-GCCAAT_S2_L001_R2_001.fastq.gz \
+/home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /home/roberto/deepa/tam_wai_leong/bam/P019WKF_normal_
 
