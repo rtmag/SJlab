@@ -74,3 +74,22 @@ mkdir star_hg38_gencode26_overhang149
 /home/roberto/deepa/tam_wai_leong/Sample_RHC8263/RHC8263-AGTCAA_S5_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /home/roberto/deepa/tam_wai_leong/bam/P520_tumor_
+
+####
+#######
+# Sorting fastq files
+
+zcat /home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R1_001.fastq.gz | \
+paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > \
+ /home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R1_001_sorted.fastq
+zcat /home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R2_001.fastq.gz | \
+paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > \
+/home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R2_001_sorted.fastq
+
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /home/roberto/references/star_hg38_gencode26_overhang149 \
+--runThreadN 130 \
+--readFilesIn /home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R1_001.fastq.gz \
+/home/roberto/deepa/tam_wai_leong/Sample_RHC8260/RHC8260-GCCAAT_S2_L001_R2_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /home/roberto/deepa/tam_wai_leong/bam_sorted/P019WKF_normal_
