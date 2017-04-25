@@ -1,0 +1,1 @@
+python RepEnrich_setup.py /data/mm9_repeatmasker.txt /data/mm9.fa /data/setup_folder_mpython ~/myPrograms/RepEnrich/RepEnrich_setup.pypython ~/myPrograms/RepEnrich/RepEnrich_setup.pypython ~/myPrograms/RepEnrich/RepEnrich_setu
