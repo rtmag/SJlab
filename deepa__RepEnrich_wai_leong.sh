@@ -12,7 +12,7 @@ python ~/myPrograms/RepEnrich/RepEnrich_setup.py hg19_repeatmasker_clean.txt hg1
 -o fastqc
 
 # Trimming
-trim_galore --illumina --clip_R1 12 --clip_R2 12 -o /home/roberto/deepa/tam_wai_leong/trimmed \
+trim_galore --illumina --clip_R1 12 -o /home/roberto/deepa/tam_wai_leong/trimmed \
 /home/roberto/deepa/tam_wai_leong/Sample_RHC8265/RHC8265-CGATGT_S7_L001_R1_001.fastq.gz \
 /home/roberto/deepa/tam_wai_leong/Sample_RHC8265/RHC8265-CGATGT_S7_L001_R2_001.fastq.gz \
 /home/roberto/deepa/tam_wai_leong/Sample_RHC8269/RHC8269-GTGGCC_S11_L001_R1_001.fastq.gz \
