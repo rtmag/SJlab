@@ -22,7 +22,7 @@ trim_galore --illumina --clip_R1 12 -o /home/roberto/deepa/novogene/trimmed \
 
 #######
 #1 old siC
-bowtie /home/roberto/references/hg19_bowtie/hg19 -p 60 -t -m 1 -S \
+bowtie /home/roberto/references/hg19_bowtie/hg19 -p 60 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/novogene/repenrich_bowtie/HCT_siControl_HWN2YCCXX_L5_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/novogene/trimmed/HCT_siControl_HWN2YCCXX_L5_1_trimmed.fq.gz ) \
 -2 <( zcat /home/roberto/deepa/novogene/trimmed/HCT_siControl_HWN2YCCXX_L5_2_trimmed.fq.gz ) \
@@ -90,3 +90,9 @@ bowtie /home/roberto/references/hg19_bowtie/hg19 -p 60 -t -m 1 -S \
 -1 <( zcat /home/roberto/deepa/novogene/trimmed/HCT116_siIRF7_JQ1_1_trimmed.fq.gz ) \
 -2 <( zcat /home/roberto/deepa/novogene/trimmed/HCT116_siIRF7_JQ1_2_trimmed.fq.gz ) \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_JQ1_uniq.sam
+
+#####
+
+python RepEnrich.py \
+/data/mm9_repeatmasker.txt \
+/data/sample_A sample_A /data/hg19_setup_folder sampleA_multimap_1.fastq --fastqfile2 sampleA_multimap_2.fastq sampleA_unique.bam --cpus 16 --pairedend TRUE
