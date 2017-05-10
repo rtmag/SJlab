@@ -130,5 +130,95 @@ samtools index HCT116_siIRF7_JQ1_uniq.bam
 
 
 python RepEnrich.py \
-/data/mm9_repeatmasker.txt \
-/data/sample_A sample_A /data/hg19_setup_folder sampleA_multimap_1.fastq --fastqfile2 sampleA_multimap_2.fastq sampleA_unique.bam --cpus 16 --pairedend TRUE
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siC_DMSO \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_DMSO_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_DMSO_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_DMSO_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siC_JQ1 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_JQ1_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_JQ1_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_JQ1_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT_DMSO_HWN2YCCXX_L2 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_DMSO_HWN2YCCXX_L2_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_DMSO_HWN2YCCXX_L2_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_DMSO_HWN2YCCXX_L2_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT_JQ1_HWN2YCCXX_L5 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_JQ1_HWN2YCCXX_L5_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_JQ1_HWN2YCCXX_L5_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_JQ1_HWN2YCCXX_L5_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+####
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siC \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siK \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siK_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siK_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siK_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT_siControl_HWN2YCCXX_L5 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_siControl_HWN2YCCXX_L5_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_siControl_HWN2YCCXX_L5_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_siControl_HWN2YCCXX_L5_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT_siK_HVNYLCCXX_L2 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_siK_HVNYLCCXX_L2_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_siK_HVNYLCCXX_L2_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT_siK_HVNYLCCXX_L2_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+##
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siIRF7_DMSO \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_DMSO_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_DMSO_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_DMSO_uniq.bam \
+--cpus 30 --pairedend TRUE
+
+python RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/novogene/repenrich HCT116_siIRF7_JQ1 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_JQ1_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_JQ1_multimap_2.fastq \
+/home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_JQ1_uniq.bam \
+--cpus 30 --pairedend TRUE
