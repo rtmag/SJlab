@@ -129,7 +129,7 @@ samtools index HCT116_siIRF7_JQ1_uniq.bam
 
 
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siC_DMSO \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -138,7 +138,8 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_DMSO_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siC_JQ1 \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -147,7 +148,8 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_JQ1_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT_DMSO_HWN2YCCXX_L2 \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -156,7 +158,8 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_DMSO_HWN2YCCXX_L2_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT_JQ1_HWN2YCCXX_L5 \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -167,7 +170,7 @@ python RepEnrich.py \
 
 ####
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siC \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -176,7 +179,7 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siC_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siK \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -185,7 +188,7 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siK_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT_siControl_HWN2YCCXX_L5 \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -194,7 +197,7 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT_siControl_HWN2YCCXX_L5_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT_siK_HVNYLCCXX_L2 \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -205,7 +208,7 @@ python RepEnrich.py \
 
 ##
 
-python RepEnrich.py \
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siIRF7_DMSO \
 /home/roberto/references/RepEnrich_hg19/ \
@@ -214,7 +217,8 @@ python RepEnrich.py \
 /home/roberto/deepa/novogene/repenrich_bowtie/HCT116_siIRF7_DMSO_uniq.bam \
 --cpus 30 --pairedend TRUE
 
-python RepEnrich.py \
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/references/hg19_repeatmasker_clean.txt \
 /home/roberto/deepa/novogene/repenrich HCT116_siIRF7_JQ1 \
 /home/roberto/references/RepEnrich_hg19/ \
