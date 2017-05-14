@@ -148,10 +148,9 @@ for(current_contrast in allcontrasts) {
   boxplot(logFC ~ types, data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log(Fold Change)", main=paste("Type",current_contrast) )
   abline(v=0)
-	  par(mar=c(6,10,4,1),cex.axis=1)
 		#plot repeats
 		  par(mar=c(6,10,4,1),cex.axis=.4)
-  repe <- with(results[results, reorder(repeats, -logFC, median))
+  repe <- with(results, reorder(repeats, -logFC, median))
 boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast))
   abline(v=0)
