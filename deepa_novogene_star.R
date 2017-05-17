@@ -1,4 +1,5 @@
 library(Rsubread)
+options(scipen=999)
 
 data<-featureCounts(c(
 "/home/roberto/deepa/novogene/STAR/HCT116_siC_Aligned.sortedByCoord.out.bam",
@@ -35,6 +36,7 @@ design<-data.frame(experiment=colnames(countData[,c(1,6,9,10)]), batch = c("r1",
 
 dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condition )
 dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
 
 export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>.5),]
@@ -42,4 +44,14 @@ write.csv(export,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
 write.csv(dDif_res,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_all.csv")
 
 ###
-
+pdf("interesting_genes.pdf")
+x=assay(dLRT_vsd)[grep("ATRX|suv39|trim28",rownames(assay(dLRT_vsd)),perl=T,ignore.case=T),]
+barplot(t(x),beside=T,col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),border=NA,ylab="Log2 Normalized read counts")
+legend("topright",col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),legend=c("r2_siC","r2_siK","r1_siC","r1_siK"),bty="n",pch=15)
+ par(mar=c(5.1, 7, 4.1, 2.1))
+x=dDif_res[grep("ATRX|suv39|trim28",rownames(dDif_res),perl=T,ignore.case=T),2]
+fdr=paste("q-val=",round(dDif_res[,6],2)[grep("ATRX|suv39|trim28",rownames(dDif_res),perl=T,ignore.case=T)],sep="")
+names(x)=paste(rownames(dDif_res)[grep("ATRX|suv39|trim28",rownames(dDif_res),perl=T,ignore.case=T)],fdr,sep="\n")
+barplot(x,ylim=c(-1,2),border=NA,col=c("lightblue4","indianred4","lightblue4","lightblue4"),ylab="log2 Fold Change (siC vs siK)\n\n\nHigher expression in siK                                              Higher expression in siC")
+abline(h=0)
+dev.off()
