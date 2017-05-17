@@ -33,7 +33,7 @@ countData=dat
 design<-data.frame(experiment=colnames(countData[,c(1,6,9,10)]), batch = c("r1","r1","r2","r2"),
                                             condition = c("siC","siC", "siK","siK") )
 
-dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condiion )
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condition )
 dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
 dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
 
