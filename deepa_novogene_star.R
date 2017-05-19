@@ -55,3 +55,17 @@ names(x)=paste(rownames(dDif_res)[grep("ATRX|suv39|trim28",rownames(dDif_res),pe
 barplot(x,ylim=c(-1,2),border=NA,col=c("lightblue4","indianred4","lightblue4","lightblue4"),ylab="log2 Fold Change (siC vs siK)\n\n\nHigher expression in siK                                              Higher expression in siC")
 abline(h=0)
 dev.off()
+
+####
+
+design<-data.frame(experiment=colnames(countData[,c(2,3,7,8)]), batch = c("r2","r2","r1","r1"),
+                                            condition = c("DMSO","JQ1", "DMSO","JQ1") )
+
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(2,3,7,8)], colData = design, design = ~ batch + condition )
+dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+dDif_res <- results(dLRT,contrast=c("condition","DMSO","JQ1"))
+
+export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
+write.csv(export,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
+write.csv(dDif_res,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_all.csv")
