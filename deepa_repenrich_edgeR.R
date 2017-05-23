@@ -104,16 +104,20 @@ colnames(results)[7]="repeats"
 #write.table(results, 'results.txt', quote=FALSE, sep="\t")
 
 #FDR 5%
-pdf("replicates_repenrich_FDR_5.pdf")
 for(current_contrast in allcontrasts) {
   logFC <- results[ results[, paste0("FDR.", current_contrast)]<0.05, 
 		   paste0("logFC.", current_contrast)]
   # Plot the repeat classes
+	
+postscript(paste(current_contrast,"_class_replicates_repenrich_FDR_5_noFilter.ps",sep=""))
   classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
   par(mar=c(6,10,4,1))
   boxplot(logFC ~ as.vector(classes), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
   abline(v=0)
+dev.off()
+	
+postscript(paste(current_contrast,"_type_replicates_repenrich_FDR_5_noFilter.ps",sep=""))
   # Plot the repeat types
 	
 	  par(mar=c(6,10,4,1))
@@ -121,7 +125,9 @@ for(current_contrast in allcontrasts) {
     boxplot(logFC ~ as.vector(types), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Type",current_contrast,"FDR 5%") )
   abline(v=0)
+dev.off()
 
+postscript(paste(current_contrast,"_repeats_replicates_repenrich_FDR_5_noFilter.ps",sep=""))
 	#plot repeats
 		  par(mar=c(6,10,4,1),cex.axis=.4)
   repe <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(repeats, -logFC, median))
@@ -132,6 +138,45 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
 }
 dev.off()
 
+#FDR 5% Filtered
+#!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite"))
+for(current_contrast in allcontrasts) {
+  logFC <- results[ results[, paste0("FDR.", current_contrast)]<0.05, 
+		   paste0("logFC.", current_contrast)]
+  results=results[!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite")),]
+  # Plot the repeat classes
+	
+postscript(paste(current_contrast,"_class_replicates_repenrich_FDR_5_Filtered.ps",sep=""))
+  classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
+  par(mar=c(6,10,4,1))
+  boxplot(logFC ~ as.vector(classes), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
+  abline(v=0)
+dev.off()
+	
+postscript(paste(current_contrast,"_type_replicates_repenrich_FDR_5_Filtered.ps",sep=""))
+  # Plot the repeat types
+	
+	  par(mar=c(6,10,4,1))
+  types <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(type, -logFC, median))
+    boxplot(logFC ~ as.vector(types), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Type",current_contrast,"FDR 5%") )
+  abline(v=0)
+dev.off()
+
+postscript(paste(current_contrast,"_repeats_replicates_repenrich_FDR_5_Filtered.ps",sep=""))
+	#plot repeats
+		  par(mar=c(6,10,4,1),cex.axis=.4)
+  repe <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(repeats, -logFC, median))
+boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast,"FDR 5%"))
+  abline(v=0)
+		  par(mar=c(6,10,4,1),cex.axis=1)
+}
+dev.off()
+
+
+####
 
 pdf("replicates_repenrich_NoFDR.pdf")
 # Plot Fold Changes for repeat classes and types
@@ -157,3 +202,37 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
 		  par(mar=c(6,10,4,1),cex.axis=1)
 }
 dev.off()
+
+#######
+# TOTAL READS COUNTS
+# using only LTR, DNA, RNA, Other, RC, LINE, SINE
+# removing srpRNA, rRNA, snRNA, tRNA, scRNA, satellite
+
+r1_siC=read.table("HCT_siControl_HWN2YCCXX_L5_class_fraction_counts.txt",row.names=1)
+r1_siK=read.table("HCT_siK_HVNYLCCXX_L2_class_fraction_counts.txt",row.names=1)
+
+r2_siC=read.table("HCT116_siC_class_fraction_counts.txt",row.names=1)
+r2_siK=read.table("HCT116_siK_class_fraction_counts.txt",row.names=1)
+
+r1_siC=r1_siC[c(2,5,8,9,10,11,12),]
+r1_siK=r1_siK[c(2,5,8,9,10,11,12),]
+r2_siC=r2_siC[c(2,5,8,9,10,11,12),]
+r2_siK=r2_siK[c(2,5,8,9,10,11,12),]
+
+
+postscript("Total_frangment_counts_notNormalized.ps")
+class_vec=cbind(sum(r1_siC),sum(r1_siK),sum(r2_siC),sum(r2_siK))
+barplot(t(class_vec),beside=T,col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),border=NA,ylab="Total fragment counts",ylim=c(0,2500000))
+legend("topright",col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),legend=c("r1_siC","r1_siK","r2_siC","r2_siK"),bty="n",pch=15)
+dev.off()
+
+postscript("Total_frangment_counts_Normalized.ps")
+class_vec=cbind(sum(r1_siC)/4254957,sum(r1_siK)/6563529,sum(r2_siC)/6045550,sum(r2_siK)/6769278)
+barplot(t(class_vec),beside=T,col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),border=NA,ylab="Total Normalized fragment counts",ylim=c(0,.35))
+legend("topright",col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),legend=c("r1_siC","r1_siK","r2_siC","r2_siK"),bty="n",pch=15)
+dev.off()
+
+########
+# FDR ps plot with and without rna 
+
+
