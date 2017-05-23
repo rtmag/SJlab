@@ -30,20 +30,12 @@ colnames(dat)<-gsub("_Aligned.sortedByCoord.out.bam","",colnames(dat))
 saveRDS(dat,"novogene_counts.rds")
 
 ###
-countData=dat
-design<-data.frame(experiment=colnames(countData[,c(1,6,9,10)]), batch = c("r1","r1","r2","r2"),
-                                            condition = c("siC","siK", "siC","siK") )
+countData=readRDS("novogene_counts.rds")
+library(Rsubread)
+options(scipen=999)
+library(DESeq2)
+####
 
-dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condition )
-dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
-dLRT_vsd <- varianceStabilizingTransformation(dLRT)
-dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
-
-export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>.5),]
-write.csv(export,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
-write.csv(dDif_res,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_all.csv")
-
-###
 pdf("interesting_genes.pdf")
 x=assay(dLRT_vsd)[grep("ATRX|suv39|trim28",rownames(assay(dLRT_vsd)),perl=T,ignore.case=T),]
 barplot(t(x),beside=T,col=c("darkseagreen1","indianred1","darkseagreen4","indianred4"),border=NA,ylab="Log2 Normalized read counts")
@@ -55,6 +47,21 @@ names(x)=paste(rownames(dDif_res)[grep("ATRX|suv39|trim28",rownames(dDif_res),pe
 barplot(x,ylim=c(-1,2),border=NA,col=c("lightblue4","indianred4","lightblue4","lightblue4"),ylab="log2 Fold Change (siC vs siK)\n\n\nHigher expression in siK                                              Higher expression in siC")
 abline(h=0)
 dev.off()
+####
+
+design<-data.frame(experiment=colnames(countData[,c(1,6,9,10)]), batch = c("r1","r1","r2","r2"),
+                                            condition = c("siC","siK", "siC","siK") )
+
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condition )
+dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
+
+export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
+write.csv(dDif_res,"siC_siK_DEG_revised_all.csv")
+write.table(rownames(export),"siC_siK_export.txt",quote=F,row.names=F,col.names=F)
+write.table(rownames(dDif_res),"background.txt",quote=F,row.names=F,col.names=F)
+
 
 ####
 
@@ -67,5 +74,20 @@ dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dDif_res <- results(dLRT,contrast=c("condition","DMSO","JQ1"))
 
 export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
-write.csv(export,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_log2FC-0.5_padj-0.05.csv")
-write.csv(dDif_res,"LPCX-siC_TIP60-siC_r1r2_DEG_revised_all.csv")
+write.csv(dDif_res,"DMSO_JQ1_DEG_revised_all.csv")
+write.table(rownames(export),"DMSO_JQ1_export.txt",quote=F,row.names=F,col.names=F)
+##
+# siC_JQ1 siIRF7_JQ1
+
+write.csv(dDif_res,"DMSO_JQ1_DEG_revised_all.csv")
+
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(3,5)],
+       colData = data.frame(group=c("siC_JQ1","siIRF7_JQ1")),
+       design = ~ group)
+rld <- rlogTransformation( dds )
+res1 <- data.frame(rLogFC = assay(rld)[,1] - assay(rld)[,2],siC_JQ1=countData[,3],siIRF7_JQ1=countData[,5] )
+write.csv(res1,"5_siC_JQ1_vs_siIRF7_JQ1_DEG_revised_all.csv")
+
+integron=cbind(res1[abs(res1[,1])>.5,][rownames(res1[abs(res1[,1])>.5,]) %in% rownames(export),],export[rownames(export) %in% rownames(res1[abs(res1[,1])>.5,]),])
+write.csv(integron,"6_Intersection_siC_JQ1_vs_siIRF7_JQ1_AND_DMSO_JQ1.csv")
