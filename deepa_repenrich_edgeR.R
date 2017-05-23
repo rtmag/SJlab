@@ -102,8 +102,12 @@ results <- cbind(results,rownames(results))
 colnames(results)[7]="repeats"
 # Save the results
 #write.table(results, 'results.txt', quote=FALSE, sep="\t")
+results_ori=results
+
 
 #FDR 5%
+results=results_ori
+
 for(current_contrast in allcontrasts) {
   logFC <- results[ results[, paste0("FDR.", current_contrast)]<0.05, 
 		   paste0("logFC.", current_contrast)]
@@ -135,15 +139,18 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast,"FDR 5%"))
   abline(v=0)
 		  par(mar=c(6,10,4,1),cex.axis=1)
-}
-dev.off()
+	dev.off()
 
+}
+
+
+results=results_ori
 #FDR 5% Filtered
-#!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite"))
 for(current_contrast in allcontrasts) {
+  results=results[!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite")),]
+  
   logFC <- results[ results[, paste0("FDR.", current_contrast)]<0.05, 
 		   paste0("logFC.", current_contrast)]
-  results=results[!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite")),]
   # Plot the repeat classes
 	
 postscript(paste(current_contrast,"_class_replicates_repenrich_FDR_5_Filtered.ps",sep=""))
@@ -155,8 +162,7 @@ postscript(paste(current_contrast,"_class_replicates_repenrich_FDR_5_Filtered.ps
 dev.off()
 	
 postscript(paste(current_contrast,"_type_replicates_repenrich_FDR_5_Filtered.ps",sep=""))
-  # Plot the repeat types
-	
+  # Plot the repeat types	
 	  par(mar=c(6,10,4,1))
   types <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(type, -logFC, median))
     boxplot(logFC ~ as.vector(types), data=results, outline=FALSE, horizontal=TRUE,
@@ -172,8 +178,9 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast,"FDR 5%"))
   abline(v=0)
 		  par(mar=c(6,10,4,1),cex.axis=1)
+	dev.off()
 }
-dev.off()
+
 
 
 ####
@@ -200,8 +207,9 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast))
   abline(v=0)
 		  par(mar=c(6,10,4,1),cex.axis=1)
+	dev.off()
+
 }
-dev.off()
 
 #######
 # TOTAL READS COUNTS
