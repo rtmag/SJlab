@@ -42,5 +42,5 @@ ir.pca <- prcomp(t(y),
 sx=summary(ir.pca)
 
 plot(ir.pca$x[,1],ir.pca$x[,2],col="white",xlab=paste("PCA1:",sx$importance[2,1]),ylab=paste("PCA2:",sx$importance[2,2]),xlim=c(-120,120))
-text(ir.pca$x[,1],ir.pca$x[,2], labels=c("siC_rep1","siC_rep3","siE6_rep1","siE6_rep3"), cex= 0.7)
+text(ir.pca$x[,1],ir.pca$x[,2], labels=c("siC_rep1","siC_rep2","siC_rep3","siE6_rep1","siE6_rep2","siE6_rep3"), cex= 0.7)
 dev.off()
