@@ -47,7 +47,7 @@ normfacs <- normOffsets(binned)
 #cat *broadPeak| sort -k1,1 -k2,2n|bedtools merge -i - >Broadpeak_merged.bed
 
 #regions=bed_to_granges("BROADPEAK_TSS.bed")
-regions=bed_to_granges("BROADPEAK_741.bed")
+regions=bed_to_granges("BROADPEAK_66.bed")
  counts <- regionCounts(bam.files, regions, ext=300, param=param)
 countData=assay(counts)
 colnames(countData)=bam.files
@@ -70,3 +70,6 @@ postscript("acH2AZ_H2AZ.ps")
 boxplot((x[,3]/x[,1]),(x[,4]/x[,1]),outline=0,border=c("blue","goldenrod4"),width=c(4,4),names=c("siControl","siTIP60A"),ylab="acH2Az/H2AZ across peaks at TSS ")
 dev.off()
 
+#tss_peak region parsing
+# more hg19_tss_2kb_.bed|grep -w -f 66_dw_ov.txt > 66_tss.bed
+# bedtools intersect -a BROADPEAK_TSS.bed -b 66_tss.bed |sort|uniq > BROADPEAK_66.bed
