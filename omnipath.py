@@ -31,8 +31,10 @@ for igene in query_nodes:
         print(neighbours_of_prot[0:10])
     print('---')
     
-    visual_style = {'bbox': (300, 300),
-               'margin': 50}
+pa.get_directed()
+    
+visual_style = {'bbox': (900, 900),
+               'margin': 100}
     
     # get neighbourhood graphs for each of the query nodes
 subgraph = {}
@@ -42,3 +44,19 @@ for igene in query_nodes:
  
 
 ####
+
+# plot neighbourhood of KAT5
+igene = 'KAT5'
+print(subgraph[igene].vs['label'])
+igraph.plot(subgraph[igene], layout=subgraph[igene].layout_auto(), **visual_style)
+
+############
+
+# find shortest path between KAT5 and DNMT1
+path = pa.graph.get_shortest_paths(pa.genesymbol('KAT5')['name'], to=pa.genesymbol('DNMT1')['name'])
+# the result is returned as a list with a single element
+path = path[0]
+
+path_KAT5_to_DNMT1_length = len(path)-1
+print('The path from KAT5 to DNMT1 has {} steps:'.format(path_KAT5_to_DNMT1_length))
+print('\t' + ' --- '.join(pa.graph.vs[i]['label'] for i in path))
