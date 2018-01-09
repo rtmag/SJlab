@@ -255,3 +255,22 @@ bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_JQ1_HWN2YCCXX_L5_uniq.bam -o
 bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_DMSO_uniq.bam -o hct116_siC_DMSO.bw
 bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_JQ1_uniq.bam -o hct116_siC_JQ1.bw
 
+##
+
+samtools index HCT116_siC_DMSO_Aligned.sortedByCoord.out.bam &
+samtools index HCT116_siC_JQ1_Aligned.sortedByCoord.out.bam &
+samtools index HCT_DMSO_HWN2YCCXX_L2_Aligned.sortedByCoord.out.bam
+samtools index HCT_JQ1_HWN2YCCXX_L5_Aligned.sortedByCoord.out.bam
+
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_Aligned.sortedByCoord.out.bam -o hct116_siC_1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siK_Aligned.sortedByCoord.out.bam -o hct116_siK_1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_DMSO_Aligned.sortedByCoord.out.bam -o hct116_siC_DMSO.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_JQ1_Aligned.sortedByCoord.out.bam -o hct116_siC_JQ1.bw
+
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_DMSO_HWN2YCCXX_L2_Aligned.sortedByCoord.out.bam -o hct116_DMSO.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_JQ1_HWN2YCCXX_L5_Aligned.sortedByCoord.out.bam -o hct116_JQ1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_siControl_HWN2YCCXX_L5_Aligned.sortedByCoord.out.bam -o hct116_siC_2.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_siK_HVNYLCCXX_L2_Aligned.sortedByCoord.out.bam -o hct116_siK_2.bw
+#
+
+
