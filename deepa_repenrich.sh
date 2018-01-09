@@ -245,13 +245,13 @@ samtools index HCT116_siC_DMSO_uniq.bam
 
 samtools index HCT116_siC_JQ1_uniq.bam
 
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT_siControl_HWN2YCCXX_L5_uniq.bam -o hct116_siC_2.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT_siK_HVNYLCCXX_L2_uniq.bam -o hct116_siK_2.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT116_siC_uniq.bam -o hct116_siC_1.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT116_siK_uniq.bam -o hct116_siK_1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_siControl_HWN2YCCXX_L5_uniq.bam -o hct116_siC_2.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_siK_HVNYLCCXX_L2_uniq.bam -o hct116_siK_2.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_uniq.bam -o hct116_siC_1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siK_uniq.bam -o hct116_siK_1.bw
 
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT_DMSO_HWN2YCCXX_L2_uniq.bam -o hct116_DMSO.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT_JQ1_HWN2YCCXX_L5_uniq.bam -o hct116_JQ1.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT116_siC_DMSO_uniq.bam -o hct116_siC_DMSO.bw
-bamCoverage -p max -bs 1 --normalizeUsingRPKM -b HCT116_siC_JQ1_uniq.bam -o hct116_siC_JQ1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_DMSO_HWN2YCCXX_L2_uniq.bam -o hct116_DMSO.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT_JQ1_HWN2YCCXX_L5_uniq.bam -o hct116_JQ1.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_DMSO_uniq.bam -o hct116_siC_DMSO.bw
+bamCoverage -p 20 -bs 1 --normalizeUsingRPKM -b HCT116_siC_JQ1_uniq.bam -o hct116_siC_JQ1.bw
 
