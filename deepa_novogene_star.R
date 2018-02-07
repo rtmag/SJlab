@@ -126,6 +126,9 @@ text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SUV39H2"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="SUV39H2",cex=.7)
 dev.off()
 
 pdf("volcano_plot.pdf")
@@ -142,6 +145,9 @@ text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SUV39H2"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="SUV39H2",cex=.7)
 dev.off()
 
 
