@@ -91,3 +91,58 @@ write.csv(res1,"5_siC_JQ1_vs_siIRF7_JQ1_DEG_revised_all.csv")
 
 integron=cbind(res1[abs(res1[,1])>.5,][rownames(res1[abs(res1[,1])>.5,]) %in% rownames(export),],export[rownames(export) %in% rownames(res1[abs(res1[,1])>.5,]),])
 write.csv(integron,"6_Intersection_siC_JQ1_vs_siIRF7_JQ1_AND_DMSO_JQ1.csv")
+
+
+##
+
+countData=readRDS("novogene_counts.rds")
+library(Rsubread)
+options(scipen=999)
+library(DESeq2)
+library(graphics)
+
+
+design<-data.frame(experiment=colnames(countData[,c(1,6,9,10)]), batch = c("r1","r1","r2","r2"),
+                                            condition = c("siC","siK", "siC","siK") )
+
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,c(1,6,9,10)], colData = design, design = ~ batch + condition )
+dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
+
+export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
+
+postscript("volcano_plot.ps")
+smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
+abline(v=-1,lty = 2,col="grey")
+abline(v=1,lty = 2,col="grey")
+abline(h=-log10(0.01),lty = 2,col="grey")
+x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="IRF7",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SUV39H1"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
+dev.off()
+
+pdf("volcano_plot.pdf")
+smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
+abline(v=-1,lty = 2,col="grey")
+abline(v=1,lty = 2,col="grey")
+abline(h=-log10(0.01),lty = 2,col="grey")
+x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="IRF7",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SUV39H1"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
+x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
+dev.off()
+
+
+###
