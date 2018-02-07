@@ -111,11 +111,13 @@ dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
 
 export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
+Upreg=dim(dDif_res[which(dDif_res$padj<0.05 & (dDif_res$log2FoldChange)>1),])[1]
+DWreg=dim(dDif_res[which(dDif_res$padj<0.05 & (dDif_res$log2FoldChange)>1),])[1]
 
 postscript("volcano_plot.ps")
 smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
-abline(v=-.5,lty = 2,col="grey")
-abline(v=.5,lty = 2,col="grey")
+abline(v=-1,lty = 2,col="grey")
+abline(v=1,lty = 2,col="grey")
 abline(h=-log10(0.05),lty = 2,col="grey")
 x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
@@ -129,12 +131,15 @@ text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="KAT5"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="TIP60",cex=.7)
+text(3,80,label=Upreg,cex=1)
+text(-5,80,label=Dwreg,cex=1)
+
 dev.off()
 
 pdf("volcano_plot.pdf")
 smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
-abline(v=-.5,lty = 2,col="grey")
-abline(v=.5,lty = 2,col="grey")
+abline(v=-1,lty = 2,col="grey")
+abline(v=1,lty = 2,col="grey")
 abline(h=-log10(0.05),lty = 2,col="grey")
 x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
@@ -148,6 +153,8 @@ text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="KAT5"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="TIP60",cex=.7)
+text(3,80,label=Upreg,cex=1.3)
+text(-5,80,label=Dwreg,cex=1.3)
 dev.off()
 
 
