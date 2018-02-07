@@ -114,9 +114,9 @@ export=dDif_res[which(dDif_res$padj<0.05 & abs(dDif_res$log2FoldChange)>1),]
 
 postscript("volcano_plot.ps")
 smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
-abline(v=-1,lty = 2,col="grey")
-abline(v=1,lty = 2,col="grey")
-abline(h=-log10(0.01),lty = 2,col="grey")
+abline(v=-.5,lty = 2,col="grey")
+abline(v=.5,lty = 2,col="grey")
+abline(h=-log10(0.05),lty = 2,col="grey")
 x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="IRF7",cex=.7)
@@ -126,16 +126,16 @@ text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
-x=dDif_res[which(rownames(dDif_res)=="SUV39H2"),]
+x=dDif_res[which(rownames(dDif_res)=="KAT5"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
-text(x$log2FoldChange,-log10(x$padj)+2,label="SUV39H2",cex=.7)
+text(x$log2FoldChange,-log10(x$padj)+2,label="TIP60",cex=.7)
 dev.off()
 
 pdf("volcano_plot.pdf")
 smoothScatter(dDif_res$log2FoldChange,-log10(dDif_res$padj),nrpoints=0,xlab="Log2 Fold Change (siControl/siTIP60)", ylab="-log10 P-adjusted values")
-abline(v=-1,lty = 2,col="grey")
-abline(v=1,lty = 2,col="grey")
-abline(h=-log10(0.01),lty = 2,col="grey")
+abline(v=-.5,lty = 2,col="grey")
+abline(v=.5,lty = 2,col="grey")
+abline(h=-log10(0.05),lty = 2,col="grey")
 x=dDif_res[which(rownames(dDif_res)=="IRF7"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="IRF7",cex=.7)
@@ -145,9 +145,9 @@ text(x$log2FoldChange+.5,-log10(x$padj)+2,label="SUV39H1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="SETDB1"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
-x=dDif_res[which(rownames(dDif_res)=="SUV39H2"),]
+x=dDif_res[which(rownames(dDif_res)=="KAT5"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
-text(x$log2FoldChange,-log10(x$padj)+2,label="SUV39H2",cex=.7)
+text(x$log2FoldChange,-log10(x$padj)+2,label="TIP60",cex=.7)
 dev.off()
 
 
