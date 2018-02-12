@@ -131,6 +131,12 @@ text(x$log2FoldChange,-log10(x$padj)+2,label="SETDB1",cex=.7)
 x=dDif_res[which(rownames(dDif_res)=="KAT5"),]
 points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
 text(x$log2FoldChange,-log10(x$padj)+2,label="TIP60",cex=.7)
+
+x=dDif_res[which(rownames(dDif_res)=="SLCO4C1"),]
+points(x$log2FoldChange,-log10(x$padj),pch=20,col="red")
+text(x$log2FoldChange,-log10(x$padj)+2,label="SLCO4C1",cex=.7)
+
+
 text(3,80,label=Upreg,cex=1)
 text(-5,80,label=Dwreg,cex=1)
 
