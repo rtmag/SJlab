@@ -165,3 +165,17 @@ dev.off()
 
 
 ###
+
+colData <- data.frame(group=c("siControl_1","DMSO_2","JQ1_2","siTIP60_1","DMSO_1","JQ1_1","siControl_2","siTIP60_2") )
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(1,2,3,6,7,8,9,10)],
+       colData = colData,
+       design = ~ group)
+
+dLRT <- DESeq(dds, test="LRT", reduced=~1)
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+
+
+pdf("Diagnostic_design_pca_Batch.pdf")
+plotPCA(dLRT_vsd,ntop=100000,intgroup=c('group'))
+dev.off()
