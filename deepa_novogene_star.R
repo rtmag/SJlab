@@ -179,3 +179,20 @@ dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 pdf("Diagnostic_design_pca_Batch.pdf")
 plotPCA(dLRT_vsd,ntop=100000,intgroup=c('group'))
 dev.off()
+
+####
+
+
+colData <- data.frame(group=c("siControl_1","siTIP60_1","siControl_2","siTIP60_2") )
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,c(1,6,9,10)],
+       colData = colData,
+       design = ~ group)
+
+dLRT <- DESeq(dds, test="LRT", reduced=~1)
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+
+
+pdf("Diagnostic_design_pca_TIP60.pdf")
+plotPCA(dLRT_vsd,ntop=100000,intgroup=c('group'))
+dev.off()
