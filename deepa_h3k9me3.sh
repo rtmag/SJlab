@@ -381,6 +381,15 @@ samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/K_k9me3_L001_Aligned.sorted
 /home/roberto/deepa/h3k9me3/bam/K_k9me3_L004_Aligned.sortedByCoord.out.bam &
 
 #####
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_H3.bam -o /home/roberto/deepa/h3k9me3/bam/C_H3_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_input.bam -o /home/roberto/deepa/h3k9me3/bam/C_input_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_k9me3.bam -o /home/roberto/deepa/h3k9me3/bam/C_k9me3_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_H3.bam -o /home/roberto/deepa/h3k9me3/bam/K_H3_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_input.bam -o /home/roberto/deepa/h3k9me3/bam/K_input_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam -o /home/roberto/deepa/h3k9me3/bam/K_k9me3_sort.bam &
+
+
+#####
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/home/roberto/deepa/h3k9me3/bam/C_H3.bam \
 O=/home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam \
@@ -411,21 +420,20 @@ I=/home/roberto/deepa/h3k9me3/bam/K_k9me3.bam \
 O=/home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/K_k9me3.mfile
 ####
-samtools index /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam
-samtools index /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam &
+samtools index /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam &
+samtools index /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam &
+samtools index /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam 
+samtools index /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam 
+samtools index /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam 
+
+#
 
 bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam \
 -o /home/roberto/deepa/h3k9me3/bw/C_H3.bw
 
 bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam \
 -o /home/roberto/deepa/h3k9me3/bw/C_input.bw
-
-#
-
-samtools index /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam &
-samtools index /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam &
-samtools index /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam &
-samtools index /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam &
 
 bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam \
 -o /home/roberto/deepa/h3k9me3/bw/C_k9me3.bw
