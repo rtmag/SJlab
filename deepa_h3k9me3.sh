@@ -410,6 +410,14 @@ java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates R
 I=/home/roberto/deepa/h3k9me3/bam/K_k9me3.bam \
 O=/home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/K_k9me3.mfile
+####
+samtools index /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam
+samtools index /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam
+
 
 ######
 #C_h3
