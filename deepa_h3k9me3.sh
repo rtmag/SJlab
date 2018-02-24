@@ -391,32 +391,32 @@ samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam /home/robe
 
 #####
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/C_H3.bam \
+I=/home/roberto/deepa/h3k9me3/bam/C_H3_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/C_H3.mfile
 
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/C_input.bam \
+I=/home/roberto/deepa/h3k9me3/bam/C_input_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/C_input.mfile
 
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/C_k9me3.bam \
+I=/home/roberto/deepa/h3k9me3/bam/C_k9me3_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/C_k9me3.mfile
 
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/K_H3.bam \
+I=/home/roberto/deepa/h3k9me3/bam/K_H3_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/K_H3.mfile
 
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/K_input.bam \
+I=/home/roberto/deepa/h3k9me3/bam/K_input_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/K_input.mfile
 
 java -jar /home/roberto/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
-I=/home/roberto/deepa/h3k9me3/bam/K_k9me3.bam \
+I=/home/roberto/deepa/h3k9me3/bam/K_k9me3_sort.bam \
 O=/home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam \
 M=/home/roberto/deepa/h3k9me3/bam/K_k9me3.mfile
 ####
