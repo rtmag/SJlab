@@ -553,4 +553,24 @@ samtools index /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam
 bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam \
 -o /home/roberto/deepa/h3k9me3/bw/K_k9me3.bw
 
+########
+ /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam 
+ /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam 
+ /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam 
+ /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam 
+ /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam 
+ /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam 
 #
+macs2 callpeak -f BAMPE -g hs -q 0.05 --keep-dup auto -n control_H3 --outdir /home/roberto/deepa/h3k9me3/macs2/ \
+-t /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam -c /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam &
+
+macs2 callpeak -f BAMPE -g hs -q 0.05 --keep-dup auto -n control_k9me3 --outdir /home/roberto/deepa/h3k9me3/macs2/ \
+-t /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam -c /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam &
+
+macs2 callpeak -f BAMPE -g hs -q 0.05 --keep-dup auto -n siTIP60_H3 --outdir /home/roberto/deepa/h3k9me3/macs2/ \
+-t /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam -c /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam &
+
+macs2 callpeak -f BAMPE -g hs -q 0.05 --keep-dup auto -n siTIP60_k9me3 --outdir /home/roberto/deepa/h3k9me3/macs2/ \
+-t /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam -c /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam &
+#
+
