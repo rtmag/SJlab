@@ -381,12 +381,12 @@ samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/K_k9me3_L001_Aligned.sorted
 /home/roberto/deepa/h3k9me3/bam/K_k9me3_L004_Aligned.sortedByCoord.out.bam &
 
 #####
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_H3.bam -o /home/roberto/deepa/h3k9me3/bam/C_H3_sort.bam &
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_input.bam -o /home/roberto/deepa/h3k9me3/bam/C_input_sort.bam &
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_k9me3.bam -o /home/roberto/deepa/h3k9me3/bam/C_k9me3_sort.bam &
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_H3.bam -o /home/roberto/deepa/h3k9me3/bam/K_H3_sort.bam &
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_input.bam -o /home/roberto/deepa/h3k9me3/bam/K_input_sort.bam &
-samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam -o /home/roberto/deepa/h3k9me3/bam/K_k9me3_sort.bam &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_H3.bam /home/roberto/deepa/h3k9me3/bam/C_H3_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_input.bam /home/roberto/deepa/h3k9me3/bam/C_input_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/C_k9me3.bam /home/roberto/deepa/h3k9me3/bam/C_k9me3_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_H3.bam /home/roberto/deepa/h3k9me3/bam/K_H3_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_input.bam /home/roberto/deepa/h3k9me3/bam/K_input_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam /home/roberto/deepa/h3k9me3/bam/K_k9me3_sort &
 
 
 #####
