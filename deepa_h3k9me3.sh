@@ -345,7 +345,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 ######
 #C_h3
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/C_H3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_H3.bam \
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/C_H3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_H3.bam \
 /home/roberto/deepa/h3k9me3/bam/C_H3_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_H3_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_H3_L003_Aligned.sortedByCoord.out.bam \
@@ -362,7 +362,7 @@ bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam
 -o /home/roberto/deepa/h3k9me3/bw/C_H3.bw
 ####
 # C_input
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/C_input_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_input.bam \
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/C_input_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_input.bam \
 /home/roberto/deepa/h3k9me3/bam/C_input_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_input_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_input_L003_Aligned.sortedByCoord.out.bam \
@@ -379,7 +379,7 @@ bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam
 -o /home/roberto/deepa/h3k9me3/bw/C_input.bw
 ####
 # C_k9me3
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/C_k9me3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_k9me3.bam \
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/C_k9me3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/C_k9me3.bam \
 /home/roberto/deepa/h3k9me3/bam/C_k9me3_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_k9me3_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/C_k9me3_L003_Aligned.sortedByCoord.out.bam \
@@ -397,7 +397,7 @@ bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam
 
 ####
 # K_H3
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/K_H3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_H3.bam \
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/K_H3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_H3.bam \
 /home/roberto/deepa/h3k9me3/bam/K_H3_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_H3_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_H3_L003_Aligned.sortedByCoord.out.bam \
@@ -415,7 +415,7 @@ bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam
 
 ####
 # K_input
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/K_input_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_input.bam \
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/K_input_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_input.bam \
 /home/roberto/deepa/h3k9me3/bam/K_input_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_input_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_input_L003_Aligned.sortedByCoord.out.bam \
@@ -433,7 +433,7 @@ bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam
 
 ####
 # K_k9me3
-samtools merge -h /home/roberto/deepa/h3k9me3/bam/K_k9me3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bam/K_k9me3_L001_Aligned.sortedByCoord.out.bam /home/roberto/deepa/h3k9me3/bam/K_k9me3.bam
 /home/roberto/deepa/h3k9me3/bam/K_k9me3_L001_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_k9me3_L002_Aligned.sortedByCoord.out.bam \
 /home/roberto/deepa/h3k9me3/bam/K_k9me3_L003_Aligned.sortedByCoord.out.bam \
