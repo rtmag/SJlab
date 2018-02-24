@@ -413,6 +413,15 @@ M=/home/roberto/deepa/h3k9me3/bam/K_k9me3.mfile
 ####
 samtools index /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam
 samtools index /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam
+
+bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam \
+-o /home/roberto/deepa/h3k9me3/bw/C_H3.bw
+
+bamCoverage -p max -bs 1 --normalizeUsingRPKM -b /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam \
+-o /home/roberto/deepa/h3k9me3/bw/C_input.bw
+
+#
+
 samtools index /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam
 samtools index /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam
 samtools index /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam
