@@ -574,3 +574,21 @@ macs2 callpeak -f BAMPE -g hs -q 0.05 --broad --keep-dup auto -n siTIP60_k9me3 -
 -t /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam -c /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam &
 #
 
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/C_H3_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/C_H3_rmdup.bed &
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/C_input_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/C_input_rmdup.bed &
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/C_k9me3_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/C_k9me3_rmdup.bed &
+
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/K_H3_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/K_H3_rmdup.bed &
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/K_input_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/K_input_rmdup.bed &
+bamToBed -i /home/roberto/deepa/h3k9me3/bam/K_k9me3_rmdup.bam > /home/roberto/deepa/h3k9me3/bed/K_k9me3_rmdup.bed &
+
+diffReps.pl --treatment /home/roberto/deepa/h3k9me3/bed/K_H3_rmdup.bed --control /home/roberto/deepa/h3k9me3/bed/C_H3_rmdup.bed \
+--btr /home/roberto/deepa/h3k9me3/bed/K_input_rmdup.bed --bco /home/roberto/deepa/h3k9me3/bed/C_input_rmdup.bed \
+--meth gt --gname hg19 --report /home/roberto/deepa/h3k9me3/bed/H3.diffreps &
+
+diffReps.pl --treatment /home/roberto/deepa/h3k9me3/bed/K_k9me3_rmdup.bed --control /home/roberto/deepa/h3k9me3/bed/C_k9me3_rmdup.bed \
+--btr /home/roberto/deepa/h3k9me3/bed/K_input_rmdup.bed --bco /home/roberto/deepa/h3k9me3/bed/C_input_rmdup.bed \
+--meth gt --gname hg19 --report /home/roberto/deepa/h3k9me3/bed/k9me3.diffreps &
+
+##
+
