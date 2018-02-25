@@ -101,15 +101,16 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 /home/roberto/deepa/h3k9me3/K_k9me3_L004/K-k9me3_S1_L004_R2_001.fastq.gz
 ### BOWTIE
 
-#ls -1 /home/roberto/deepa/h3k9me3/fastq_trim/*_1.fq.gz|perl -pe 's/(.+fastq\_trim\/)(.+)_R1_001_val_1.fq.gz/\n bowtie \/home\/roberto\/references\/hg19_bowtie\/hg19 \\
-#-p 30 -t -m 1 -S --chunkmbs 2000 \\ 
-#--max \/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_multimap\.fastq \\
-#\-1 \<\( zcat $1$2\_R1\_001\_val\_1\.fq\.gz \)  \\
-#\-2 \<\( zcat $1$2\_R2\_001\_val\_2\.fq\.gz \)  \\
-#\/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_uniq\.sam \n/g'
+ls -1 /home/roberto/deepa/h3k9me3/fastq_trim/*_1.fq.gz|perl -pe 's/(.+fastq\_trim\/)(.+)_R1_001_val_1.fq.gz/\n bowtie \/home\/roberto\/references\/hg19_bowtie\/hg19 \\
+-p 30 -t -m 1 -S --chunkmbs 2000 \\
+--max \/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_multimap\.fastq \\
+\-1 \<\( zcat $1$2\_R1\_001\_val\_1\.fq\.gz \)  \\
+\-2 \<\( zcat $1$2\_R2\_001\_val\_2\.fq\.gz \)  \\
+\/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_uniq\.sam \n/g'
+
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L001_R2_001_val_2.fq.gz )  \
@@ -117,7 +118,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L002_R2_001_val_2.fq.gz )  \
@@ -125,7 +126,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L003_R2_001_val_2.fq.gz )  \
@@ -133,7 +134,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-H3_S6_L004_R2_001_val_2.fq.gz )  \
@@ -141,7 +142,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L001_R2_001_val_2.fq.gz )  \
@@ -149,7 +150,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L002_R2_001_val_2.fq.gz )  \
@@ -157,7 +158,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L003_R2_001_val_2.fq.gz )  \
@@ -165,7 +166,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-input_S5_L004_R2_001_val_2.fq.gz )  \
@@ -173,7 +174,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L001_R2_001_val_2.fq.gz )  \
@@ -181,7 +182,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L002_R2_001_val_2.fq.gz )  \
@@ -189,7 +190,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L003_R2_001_val_2.fq.gz )  \
@@ -197,7 +198,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/C-k9me3_S4_L004_R2_001_val_2.fq.gz )  \
@@ -205,7 +206,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L001_R2_001_val_2.fq.gz )  \
@@ -213,7 +214,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L002_R2_001_val_2.fq.gz )  \
@@ -221,7 +222,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L003_R2_001_val_2.fq.gz )  \
@@ -229,7 +230,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-H3_S2_L004_R2_001_val_2.fq.gz )  \
@@ -237,7 +238,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L001_R2_001_val_2.fq.gz )  \
@@ -245,7 +246,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L002_R2_001_val_2.fq.gz )  \
@@ -253,7 +254,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L003_R2_001_val_2.fq.gz )  \
@@ -261,7 +262,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-input_S3_L004_R2_001_val_2.fq.gz )  \
@@ -269,7 +270,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L001_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L001_R2_001_val_2.fq.gz )  \
@@ -277,7 +278,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L002_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L002_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L002_R2_001_val_2.fq.gz )  \
@@ -285,7 +286,7 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L003_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L003_R2_001_val_2.fq.gz )  \
@@ -293,13 +294,13 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
--p 30 -t -m 1 -S --chunkmbs 2000 \ 
+-p 30 -t -m 1 -S --chunkmbs 2000 \
 --max /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_multimap.fastq \
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L004_R2_001_val_2.fq.gz )  \
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.sam 
 
-#
+# STAR
 
 /home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /home/roberto/references/hg38_noanno \
 --readFilesCommand zcat \
