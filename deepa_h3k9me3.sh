@@ -371,6 +371,14 @@ samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq.bam /home
 samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq_sort &
 samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq_sort &
 
+samtools index /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq_sort.bam &
+samtools index /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq_sort.bam &
+samtools index /home/roberto/deepa/h3k9me3/bowtie/C_k9me3_uniq_sort.bam &
+samtools index /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq_sort.bam &
+samtools index /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq_sort.bam &
+samtools index /home/roberto/deepa/h3k9me3/bowtie/K_k9me3_uniq_sort.bam &
+
+
 #
 
 cat C-H3_S6_L001_multimap_1.fastq  C-H3_S6_L002_multimap_1.fastq  C-H3_S6_L003_multimap_1.fastq  C-H3_S6_L004_multimap_1.fastq > C-H3_multimap_1.fastq
@@ -390,6 +398,62 @@ cat K-input_S3_L001_multimap_2.fastq  K-input_S3_L002_multimap_2.fastq  K-input_
 
 cat K-k9me3_S1_L001_multimap_1.fastq  K-k9me3_S1_L002_multimap_1.fastq  K-k9me3_S1_L003_multimap_1.fastq  K-k9me3_S1_L004_multimap_1.fastq >  K-k9me3_multimap_1.fastq
 cat K-k9me3_S1_L001_multimap_2.fastq  K-k9me3_S1_L002_multimap_2.fastq  K-k9me3_S1_L003_multimap_2.fastq  K-k9me3_S1_L004_multimap_2.fastq >  K-k9me3_multimap_2.fastq
+
+#
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich C-H3 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/C-H3_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich C-input \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/C-input_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich C-k9me3 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich K-H3 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/ K-H3_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich K-input \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/K-input_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
+/home/roberto/references/hg19_repeatmasker_clean.txt \
+/home/roberto/deepa/h3k9me3/repenrich K-k9me3 \
+/home/roberto/references/RepEnrich_hg19/ \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_multimap_1.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_multimap_2.fastq \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq_sort.bam \
+--cpus 30 --pairedend TRUE
 
 
 # STAR
