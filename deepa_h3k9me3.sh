@@ -101,12 +101,12 @@ trim_galore --illumina --paired -o /home/roberto/deepa/h3k9me3/fastq_trim/ \
 /home/roberto/deepa/h3k9me3/K_k9me3_L004/K-k9me3_S1_L004_R2_001.fastq.gz
 ### BOWTIE
 
-ls -1 /home/roberto/deepa/h3k9me3/fastq_trim/*_1.fq.gz|perl -pe 's/(.+fastq\_trim\/)(.+)_R1_001_val_1.fq.gz/\n bowtie \/home\/roberto\/references\/hg19_bowtie\/hg19 \\
--p 30 -t -m 1 -S --chunkmbs 2000 \\
---max \/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_multimap\.fastq \\
-\-1 \<\( zcat $1$2\_R1\_001\_val\_1\.fq\.gz \)  \\
-\-2 \<\( zcat $1$2\_R2\_001\_val\_2\.fq\.gz \)  \\
-\/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_uniq\.sam \n/g'
+#ls -1 /home/roberto/deepa/h3k9me3/fastq_trim/*_1.fq.gz|perl -pe 's/(.+fastq\_trim\/)(.+)_R1_001_val_1.fq.gz/\n bowtie \/home\/roberto\/references\/hg19_bowtie\/hg19 \\
+#-p 30 -t -m 1 -S --chunkmbs 2000 \\
+#--max \/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_multimap\.fastq \\
+#\-1 \<\( zcat $1$2\_R1\_001\_val\_1\.fq\.gz \)  \\
+#\-2 \<\( zcat $1$2\_R2\_001\_val\_2\.fq\.gz \)  \\
+#\/home\/roberto\/deepa\/h3k9me3\/bowtie\/$2\_uniq\.sam \n/g'
 
 
  bowtie /home/roberto/references/hg19_bowtie/hg19 \
@@ -299,6 +299,72 @@ ls -1 /home/roberto/deepa/h3k9me3/fastq_trim/*_1.fq.gz|perl -pe 's/(.+fastq\_tri
 -1 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L004_R1_001_val_1.fq.gz )  \
 -2 <( zcat /home/roberto/deepa/h3k9me3/fastq_trim/K-k9me3_S1_L004_R2_001_val_2.fq.gz )  \
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.sam 
+
+# MERGE bam
+
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L004_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L004_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L004_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L004_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L004_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L002_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L002_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_uniq.bam & 
+samtools view -bS /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.sam > /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.bam & 
+
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-H3_S6_L004_uniq.bam &
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-input_S5_L004_uniq.bam &
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/C-k9me3_S4_L004_uniq.bam &
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-H3_S2_L004_uniq.bam &
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-input_S3_L004_uniq.bam &
+
+samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L002_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_uniq.bam \
+/home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.bam &
+
+
 
 # STAR
 
