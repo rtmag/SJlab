@@ -371,6 +371,15 @@ samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq.bam /home
 samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq_sort &
 samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq_sort &
 
+
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq.bam /home/roberto/deepa/h3k9me3/sort/C-H3_uniq_sort &
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq.bam /home/roberto/deepa/h3k9me3/sort/C-input_uniq_sort &
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/sort/C-k9me3_uniq_sort &
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq.bam /home/roberto/deepa/h3k9me3/sort/K-H3_uniq_sort &
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq.bam /home/roberto/deepa/h3k9me3/sort/K-input_uniq_sort &
+samtools sort /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/sort/K-k9me3_uniq_sort &
+
+
 samtools index /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq_sort.bam &
 samtools index /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq_sort.bam &
 samtools index /home/roberto/deepa/h3k9me3/bowtie/C_k9me3_uniq_sort.bam &
