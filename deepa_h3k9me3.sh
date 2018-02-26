@@ -364,6 +364,25 @@ samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.bam
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_uniq.bam \
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.bam &
 
+#
+
+cat C-H3_S6_L001_multimap_1.fastq  C-H3_S6_L002_multimap_1.fastq  C-H3_S6_L003_multimap_1.fastq  C-H3_S6_L004_multimap_1.fastq > C-H3_multimap_1.fastq
+cat C-H3_S6_L001_multimap_2.fastq C-H3_S6_L002_multimap_2.fastq  C-H3_S6_L003_multimap_2.fastq  C-H3_S6_L004_multimap_2.fastq > C-H3_multimap_2.fastq
+
+cat C-input_S5_L001_multimap_1.fastq C-input_S5_L002_multimap_1.fastq  C-input_S5_L003_multimap_1.fastq  C-input_S5_L004_multimap_1.fastq > C-input_multimap_1.fastq
+cat C-input_S5_L001_multimap_2.fastq C-input_S5_L002_multimap_2.fastq  C-input_S5_L003_multimap_2.fastq  C-input_S5_L004_multimap_2.fastq > C-input_multimap_2.fastq
+
+cat C-k9me3_S4_L001_multimap_1.fastq C-k9me3_S4_L002_multimap_1.fastq  C-k9me3_S4_L003_multimap_1.fastq  C-k9me3_S4_L004_multimap_1.fastq > C-k9me3_multimap_1.fastq
+cat C-k9me3_S4_L001_multimap_2.fastq  C-k9me3_S4_L002_multimap_2.fastq  C-k9me3_S4_L003_multimap_2.fastq  C-k9me3_S4_L004_multimap_2.fastq > C-k9me3_multimap_2.fastq
+
+cat K-H3_S2_L001_multimap_1.fastq  K-H3_S2_L002_multimap_1.fastq  K-H3_S2_L003_multimap_1.fastq  K-H3_S2_L004_multimap_1.fastq >  K-H3_multimap_1.fastq
+cat K-H3_S2_L001_multimap_2.fastq  K-H3_S2_L002_multimap_2.fastq  K-H3_S2_L003_multimap_2.fastq  K-H3_S2_L004_multimap_2.fastq >  K-H3_multimap_2.fastq
+
+cat K-input_S3_L001_multimap_1.fastq  K-input_S3_L002_multimap_1.fastq  K-input_S3_L003_multimap_1.fastq  K-input_S3_L004_multimap_1.fastq > K-input_multimap_1.fastq
+cat K-input_S3_L001_multimap_2.fastq  K-input_S3_L002_multimap_2.fastq  K-input_S3_L003_multimap_2.fastq  K-input_S3_L004_multimap_2.fastq > K-input_multimap_2.fastq
+
+cat K-k9me3_S1_L001_multimap_1.fastq  K-k9me3_S1_L002_multimap_1.fastq  K-k9me3_S1_L003_multimap_1.fastq  K-k9me3_S1_L004_multimap_1.fastq >  K-k9me3_multimap_1.fastq
+cat K-k9me3_S1_L001_multimap_2.fastq  K-k9me3_S1_L002_multimap_2.fastq  K-k9me3_S1_L003_multimap_2.fastq  K-k9me3_S1_L004_multimap_2.fastq >  K-k9me3_multimap_2.fastq
 
 
 # STAR
