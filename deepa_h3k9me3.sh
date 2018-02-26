@@ -364,6 +364,13 @@ samtools merge -f -h /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L001_uniq.bam
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L003_uniq.bam \
 /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_S1_L004_uniq.bam &
 
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-H3_uniq_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-input_uniq_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/C-k9me3_uniq_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-H3_uniq_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-input_uniq_sort &
+samtools sort -@ 5 -m 10G /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq.bam /home/roberto/deepa/h3k9me3/bowtie/K-k9me3_uniq_sort &
+
 #
 
 cat C-H3_S6_L001_multimap_1.fastq  C-H3_S6_L002_multimap_1.fastq  C-H3_S6_L003_multimap_1.fastq  C-H3_S6_L004_multimap_1.fastq > C-H3_multimap_1.fastq
