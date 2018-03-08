@@ -442,7 +442,7 @@ python /home/roberto/myPrograms/RepEnrich/RepEnrich.py \
 /home/roberto/deepa/h3k9me3/repenrich K-H3 \
 /home/roberto/references/RepEnrich_hg19/ \
 /home/roberto/deepa/h3k9me3/bowtie/K-H3_multimap_1.fastq \
---fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/ K-H3_multimap_2.fastq \
+--fastqfile2 /home/roberto/deepa/h3k9me3/bowtie/K-H3_multimap_2.fastq \
 /home/roberto/deepa/h3k9me3/sort/K-H3_uniq_sort.bam \
 --cpus 30 --pairedend TRUE
 
