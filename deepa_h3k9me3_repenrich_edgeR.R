@@ -93,3 +93,37 @@ family = logcpm
 saveRDS(class,"h3k9me3_class.rds")
 saveRDS(fraction,"h3k9me3_fraction.rds")
 saveRDS(family,"h3k9me3_family.rds")
+
+##
+
+class=readRDS("h3k9me3_class.rds")
+fraction=readRDS("h3k9me3_fraction.rds")
+family=readRDS("h3k9me3_family.rds")
+
+pdf("h3k9me3_class.pdf")
+x=(class[,1]-class[,2])
+names(x)=rownames(class)
+x=sort(x)
+barplot(t(x),beside=T,ylim=c(-.5,.1),ylab="Log10FC Normalized fragment counts ( siControl / siTIP60 )",
+	col=ifelse(x>0,"indianred1","lightblue3"),las=2)
+abline(h=0)
+dev.off()
+
+pdf("h3k9me3_fraction.pdf")
+x=(fraction[,1]-fraction[,2])
+names(x)=rownames(fraction)
+x=sort(x)
+x=x[abs(x)>0.2]
+barplot(t(x),beside=T,border=T,ylim=c(-2,5.5),ylab="Log10FC Normalized fragment counts ( siControl / siTIP60 )",
+	col=ifelse(x>0,"indianred1","lightblue3"),las=2,space=rep(2,length(x)),cex.names=.5)
+abline(h=0)
+dev.off()
+
+pdf("h3k9me3_family.pdf")
+x=(family[,1]-family[,2])
+names(x)=rownames(family)
+x=sort(x)
+barplot(t(x),beside=T,border=T,ylim=c(-.1,.4),ylab="Log10FC Normalized fragment counts ( siControl / siTIP60 )",
+	col=ifelse(x>0,"indianred1","lightblue3"),las=2,cex.names=.5)
+abline(h=0)
+dev.off()
