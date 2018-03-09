@@ -80,10 +80,10 @@ computeMatrix reference-point \
 
 
 plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens -m /home/roberto/deepa/h3k9me3/heatmap/H3_control.mat \
---samplesLabel "siControl H3" "siTIP60 H3" \
+--samplesLabel "siControl H3" "siTIP60 H3" --zMax 85 \
 -out /home/roberto/deepa/h3k9me3/heatmap/H3_control.pdf
 
 plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Reds -m /home/roberto/deepa/h3k9me3/heatmap/k9me3_control.mat \
---samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" \
+--samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" --zMax 130 \
 -out /home/roberto/deepa/h3k9me3/heatmap/k9me3_control.pdf
 
