@@ -21,8 +21,10 @@ computeMatrix reference-point \
 -R /home/roberto/deepa/novogene/deseq2/siC_siK_tss.bed --referencePoint center \
 --sortRegions descend -bs 20 -a 2000 -b 2000 -p 40 -out tss_siC_vs_siK_h3k9me3_h3.mat
 
-plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Blues -m tss_siC_vs_siK_h3k9me3_h3.mat \
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds Reds \
+-m tss_siC_vs_siK_h3k9me3_h3.mat \
 --samplesLabel "siControl H3" "siTIP60 H3" "siControl H3K9me3" "siTIP60 H3K9me3" \
+--regionsLabel "Up-Reg Genes" "Down-Reg Genes" --zMax 30 \
 -out tss_siC_vs_siK_h3k9me3_h3.pdf
 
 computeMatrix reference-point \
@@ -41,9 +43,11 @@ computeMatrix reference-point \
 
 
 plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens -m tss_siC_vs_siK_h3.mat \
---samplesLabel "siControl H3" "siTIP60 H3" \
--out tss_siC_vs_siK_h3k9me3_h3.pdf
+--samplesLabel "siControl H3" "siTIP60 H3" --zMax 30 \
+--regionsLabel "Up-Reg Genes" "Down-Reg Genes" \
+-out tss_siC_vs_siK_h3.pdf
 
 plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Reds -m tss_siC_vs_siK_h3k9me3.mat \
---samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" \
--out tss_siC_vs_siK_h3k9me3_h3.pdf
+--samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" --zMax 30 \
+--regionsLabel "Up-Reg Genes" "Down-Reg Genes" \
+-out tss_siC_vs_siK_h3k9me3.pdf
