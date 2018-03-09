@@ -51,3 +51,39 @@ plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Reds -m tss_siC_vs_
 --samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" --zMax 30 \
 --regionsLabel "Up-Reg Genes" "Down-Reg Genes" \
 -out tss_siC_vs_siK_h3k9me3.pdf
+
+###############################
+###############################
+cut -f 1,2,3 H3_up.bed > H3_control.bed
+echo "# Peaks in siTIP60" >> H3_control.bed
+cut -f 1,2,3 H3_down.bed >> H3_control.bed
+echo "# Peaks in siControl" >> H3_control.bed
+
+cut -f 1,2,3 k9me3_up.bed > k9me3_control.bed
+echo "# Peaks in siTIP60" >> k9me3_control.bed
+cut -f 1,2,3 k9me3_down.bed >> k9me3_control.bed
+echo "# Peaks in siControl" >> k9me3_control.bed
+##################################################
+computeMatrix reference-point \
+-S \
+/home/roberto/deepa/h3k9me3/bw/C_k9me3.bw \
+/home/roberto/deepa/h3k9me3/bw/K_k9me3.bw \
+-R /home/roberto/deepa/h3k9me3/bed/k9me3_control.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p 40 -out /home/roberto/deepa/h3k9me3/heatmap/k9me3_control.mat
+
+computeMatrix reference-point \
+-S \
+/home/roberto/deepa/h3k9me3/bw/C_H3.bw \
+/home/roberto/deepa/h3k9me3/bw/K_H3.bw \
+-R /home/roberto/deepa/h3k9me3/bed/H3_control.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p 40 -out /home/roberto/deepa/h3k9me3/heatmap/H3_control.mat
+
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens -m /home/roberto/deepa/h3k9me3/heatmap/H3_control.mat \
+--samplesLabel "siControl H3" "siTIP60 H3" \
+-out /home/roberto/deepa/h3k9me3/heatmap/H3_control.pdf
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Reds -m /home/roberto/deepa/h3k9me3/heatmap/k9me3_control.mat \
+--samplesLabel "siControl H3K9me3" "siTIP60 H3K9me3" \
+-out /home/roberto/deepa/h3k9me3/heatmap/k9me3_control.pdf
+
