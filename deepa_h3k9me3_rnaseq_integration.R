@@ -24,7 +24,7 @@ gene_symbol=rownames(genes_noNA) # genes with no NAs in counts
 gene_tss = hg38[(which(hg38[,4] %in% gene_symbol )),]
 gene_tss = gene_tss[!duplicated(gene_tss[,4]),]
 gene_tss_4kb=data.frame(gene_tss[,1],gene_tss[,2]-2000,gene_tss[,3]+2000,gene_tss[,4:6])
-
+gene_tss_4kb[which(gene_tss_4kb[,2]<1),2]=1
 write.table(gene_tss_4kb,"gene_tss_4kb.bed",sep="\t",quote=F,col.names=F,row.names=F)
 #######################################################################################################
 
@@ -85,7 +85,7 @@ saveRDS(normfacs,"normfacs.rds")
 
 ##
 regions=bed_to_granges("gene_tss_4kb.bed")
-counts <- regionCounts(bam.files, regions, ext=0, param=param)
+counts <- regionCounts(bam.files, regions, ext=NA, param=param)
 countData=assay(counts)
 colnames(countData)=c("C_H3","K_H3","C_k9me3","K_k9me3")
 
@@ -108,3 +108,21 @@ h3_h3k9me3_log2fc = rowMeans(vsd[,c(2,3,5,6)]) - rowMeans(vsd[,c(1,4)])
 names(h3_h3k9me3_log2fc) = regions$id
 
 saveRDS(h3_h3k9me3_log2fc,"h3_h3k9me3_log2fc_siC_vs_siK.rds")
+##################################################################
+
+atac = readRDS("atac_log2fc_shH2AFV_vs_shNT.rds")
+atac = atac[order(names(atac))]
+
+rna = read.csv("../4_out_tables/deseq2_results.csv")
+rna = rna[rna$gene_symbol %in% names(atac),]
+rna = rna[!duplicated(rna[,8]),]
+rna = rna[order(rna[,8]),]
+
+library(graphics)
+pdf("rna_atac_tss_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange, atac,ylim=c(-3,3),xlim=c(-3,3),
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( shH2AFV / shNT )'),
+             ylab=expression('ATAC-Seq Log'[2]*' Fold Change TSS ( shH2AFV / shNT )'))
+abline(v=0)
+abline(h=0)
+dev.off()
