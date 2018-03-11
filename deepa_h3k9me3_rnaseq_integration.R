@@ -190,7 +190,7 @@ dev.off()
 #######################################
 
 ## TSS 1KB
-vsd = readRDS("H3_H3K9me3_vsd.rds")
+vsd = readRDS("H3_H3K9me3_tss1kb_vsd.rds")
 
 k9me3 = (vsd[,3]/vsd[,1])-(vsd[,4]/vsd[,2])
 k9me3 = k9me3[order(names(k9me3))]
