@@ -14,8 +14,9 @@ dLRT <- DESeq(dLRT, test="LRT",full= ~ batch + condition , reduced=~ batch )
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dDif_res <- results(dLRT,contrast=c("condition","siC","siK"))
 
-
+saveRDS(dDif_res,"deseq2_siC_vs_siK.rds")
 ##################################################################################################################
+dDif_res = readRDS('deseq2_siC_vs_siK.rds')
 genes_noNA = dDif_res[!is.na(dDif_res$log2FoldChange),]
 
 hg38=read.table("~/references/hg38_tss.bed",sep="\t",stringsAsFactors=F)
@@ -26,6 +27,17 @@ gene_tss = gene_tss[!duplicated(gene_tss[,4]),]
 gene_tss_4kb=data.frame(gene_tss[,1],gene_tss[,2]-2000,gene_tss[,3]+2000,gene_tss[,4:6])
 gene_tss_4kb[which(gene_tss_4kb[,2]<1),2]=1
 write.table(gene_tss_4kb,"gene_tss_4kb.bed",sep="\t",quote=F,col.names=F,row.names=F)
+###
+
+genes_noNA = dDif_res[!is.na(dDif_res$log2FoldChange),]
+hg38=read.table("~/references/hg38_tss.bed",sep="\t",stringsAsFactors=F)
+
+gene_symbol=rownames(genes_noNA) # genes with no NAs in counts
+gene_tss = hg38[(which(hg38[,4] %in% gene_symbol )),]
+gene_tss = gene_tss[!duplicated(gene_tss[,4]),]
+gene_tss_4kb=data.frame(gene_tss[,1],gene_tss[,2]-500,gene_tss[,3]+500,gene_tss[,4:6])
+gene_tss_4kb[which(gene_tss_4kb[,2]<1),2]=1
+write.table(gene_tss_4kb,"gene_tss_1kb.bed",sep="\t",quote=F,col.names=F,row.names=F)
 #######################################################################################################
 
 
@@ -103,26 +115,118 @@ saveRDS(dds,"dds.rds")
 
 dds_vsd = varianceStabilizingTransformation(dds,fitType='local')
 vsd = assay(dds_vsd)
-h3_h3k9me3_log2fc = rowMeans(vsd[,c(2,3,5,6)]) - rowMeans(vsd[,c(1,4)])
 
-names(h3_h3k9me3_log2fc) = regions$id
+h3k9me3_H3_normalized_log2fc = (vsd[,3]/vsd[,1])-(vsd[,4]/vsd[,2])
 
-saveRDS(h3_h3k9me3_log2fc,"h3_h3k9me3_log2fc_siC_vs_siK.rds")
+names(h3k9me3_H3_normalized_log2fc) = regions$id
+
+saveRDS(h3k9me3_H3_normalized_log2fc,"h3k9me3_H3_normalized_log2fc_siC_vs_siK.rds")
+
+rownames(vsd) = regions$id
+saveRDS(vsd, "H3_H3K9me3_vsd.rds")
+###
+
+
+regions=bed_to_granges("gene_tss_1kb.bed")
+counts <- regionCounts(bam.files, regions, ext=NA, param=param)
+countData=assay(counts)
+colnames(countData)=c("C_H3","K_H3","C_k9me3","K_k9me3")
+
+colData <- data.frame(group=colnames(countData))
+dds <- DESeqDataSetFromMatrix(
+       countData = countData,
+       colData = colData,
+       design = ~ group)
+dds <- estimateSizeFactors(dds)
+sizeFactors(dds) <- normfacs
+
+dds_vsd = varianceStabilizingTransformation(dds,fitType='local')
+vsd = assay(dds_vsd)
+rownames(vsd) = regions$id
+saveRDS(vsd, "H3_H3K9me3_tss1kb_vsd.rds")
+
+
 ##################################################################
 
-atac = readRDS("atac_log2fc_shH2AFV_vs_shNT.rds")
-atac = atac[order(names(atac))]
+k9me3 = readRDS("h3k9me3_H3_normalized_log2fc_siC_vs_siK.rds")
+k9me3 = k9me3[order(names(k9me3))]
 
-rna = read.csv("../4_out_tables/deseq2_results.csv")
-rna = rna[rna$gene_symbol %in% names(atac),]
-rna = rna[!duplicated(rna[,8]),]
-rna = rna[order(rna[,8]),]
+rna = readRDS("deseq2_siC_vs_siK.rds")
+rna = rna[rownames(rna) %in% names(k9me3),]
+rna = rna[!duplicated(rownames(rna)),]
+rna = rna[order(rownames(rna)),]
 
 library(graphics)
-pdf("rna_atac_tss_scatterplot.pdf")
-smoothScatter(rna$log2FoldChange, atac,ylim=c(-3,3),xlim=c(-3,3),
-             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( shH2AFV / shNT )'),
-             ylab=expression('ATAC-Seq Log'[2]*' Fold Change TSS ( shH2AFV / shNT )'))
+pdf("rna_k9me3_h3normalized_byDivision_tss4kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange, k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-4kb ( siControl / siTIP60 )'))
+abline(v=0)
+abline(h=0)
+dev.off()
+
+vsd = readRDS("H3_H3K9me3_vsd.rds")
+k9me3 = vsd[,3]-vsd[,4]
+
+k9me3 = k9me3[order(names(k9me3))]
+pdf("rna_k9me3_tss4kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange,k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-4kb ( siControl / siTIP60 )'))
+abline(v=0)
+abline(h=0)
+dev.off()
+
+
+k9me3 = (vsd[,3]-vsd[,1])-(vsd[,4]-vsd[,2])
+k9me3 = k9me3[order(names(k9me3))]
+pdf("rna_k9me3_h3normalized_bysubstraction_tss4kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange,k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-4kb ( siControl / siTIP60 )'))
+abline(v=0)
+abline(h=0)
+dev.off()
+#######################################
+
+## TSS 1KB
+vsd = readRDS("H3_H3K9me3_vsd.rds")
+
+k9me3 = (vsd[,3]/vsd[,1])-(vsd[,4]/vsd[,2])
+k9me3 = k9me3[order(names(k9me3))]
+
+rna = readRDS("deseq2_siC_vs_siK.rds")
+rna = rna[rownames(rna) %in% names(k9me3),]
+rna = rna[!duplicated(rownames(rna)),]
+rna = rna[order(rownames(rna)),]
+
+library(graphics)
+pdf("rna_k9me3_h3normalized_byDivision_tss1kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange, k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-1kb ( siControl / siTIP60 )'))
+abline(v=0)
+abline(h=0)
+dev.off()
+
+k9me3 = vsd[,3]-vsd[,4]
+
+k9me3 = k9me3[order(names(k9me3))]
+pdf("rna_k9me3_tss1kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange,k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-1kb ( siControl / siTIP60 )'))
+abline(v=0)
+abline(h=0)
+dev.off()
+
+
+k9me3 = (vsd[,3]-vsd[,1])-(vsd[,4]-vsd[,2])
+k9me3 = k9me3[order(names(k9me3))]
+pdf("rna_k9me3_h3normalized_bysubstraction_tss1kb_scatterplot.pdf")
+smoothScatter(rna$log2FoldChange,k9me3,
+             xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
+             ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-1kb ( siControl / siTIP60 )'))
 abline(v=0)
 abline(h=0)
 dev.off()
