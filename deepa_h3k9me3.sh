@@ -956,7 +956,7 @@ diffReps.pl --treatment /home/roberto/deepa/h3k9me3/bed/K_k9me3_rmdup.bed --cont
 
 diffReps.pl --treatment /home/roberto/deepa/h3k9me3/bed/K_k9me3_rmdup.bed --control /home/roberto/deepa/h3k9me3/bed/C_k9me3_rmdup.bed \
 --btr /home/roberto/deepa/h3k9me3/bed/K_input_rmdup.bed --bco /home/roberto/deepa/h3k9me3/bed/C_H3_rmdup.bed \
---meth gt --gname hg19 --report /home/roberto/deepa/h3k9me3/bed/k9me3.diffreps --frag 0 --nproc 30 &
+--meth gt --gname hg19 --report /home/roberto/deepa/h3k9me3/bed/k9me3_h3input.diffreps --frag 0 --nproc 30 &
 
 ##
 
