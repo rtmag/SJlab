@@ -56,3 +56,30 @@ names(tdown) = paste(names(tdown)," ",round(tdown/sum(tdown)*100,digits=2),"%",s
 tdown = tdown[tdown>16]
 pie(tdown, main="Distribution of H3k9me3 peaks observed in\nsiTIP60 compared to siControl (10,866 peaks)")
 dev.off()
+######################
+
+pdf("k9me3_h3norm_siC_annStats.pdf")
+#postscript("H3K9me3_up_annStats.ps")
+res=read.table(pipe("more k9me3_h3norm_siC.annStats |cut -f1,2,4"), sep="\t",header=F)
+i1 = which(res[,1]=="Annotation")[2]+1
+i2 = dim(res)[1]
+res = res[ i1:i2,]
+tdown = as.numeric(as.character(res[,2]))
+names(tdown) = res[,1]
+names(tdown) = paste(names(tdown)," ",round(tdown/sum(tdown)*100,digits=2),"%",sep="")
+tdown = tdown[tdown>16]
+pie(tdown, main="Distribution of H3k9me3 peaks observed in\nsiControl compared to siTIP60 (3,653 peaks)")
+dev.off()
+
+pdf("k9me3_h3norm_siK_annStats.pdf")
+#postscript("H3K9me3_up_annStats.ps")
+res=read.table(pipe("more k9me3_h3norm_siK.annStats |cut -f1,2,4"), sep="\t",header=F)
+i1 = which(res[,1]=="Annotation")[2]+1
+i2 = dim(res)[1]
+res = res[ i1:i2,]
+tdown = as.numeric(as.character(res[,2]))
+names(tdown) = res[,1]
+names(tdown) = paste(names(tdown)," ",round(tdown/sum(tdown)*100,digits=2),"%",sep="")
+tdown = tdown[tdown>16]
+pie(tdown, main="Distribution of H3k9me3 peaks observed in\nsiTIP60 compared to siControl (10,969 peaks)")
+dev.off()
