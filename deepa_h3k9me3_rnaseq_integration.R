@@ -223,17 +223,23 @@ dev.off()
 
 k9me3 = (vsd[,3]-vsd[,1])-(vsd[,4]-vsd[,2])
 k9me3 = k9me3[order(names(k9me3))]
-postscript("rna_k9me3_h3normalized_bysubstraction_tss1kb_scatterplot_geneNumber.ps")
+pdf("rna_k9me3_h3normalized_bysubstraction_tss1kb_scatterplot_geneNumber.pdf")
 smoothScatter(rna$log2FoldChange,k9me3,
              xlab=expression('RNA-Seq Log'[2]*' Fold Change ( siControl / siTIP60 )'),
              ylab=expression('H3K9me3/H3 Log'[2]*' Fold Change TSS-1kb ( siControl / siTIP60 )'))
 abline(v=0)
 abline(h=0)
 
-legend("topright",legend=sum(rna$log2FoldChange>0 & k9me3>0),bty = "n",border=NA)
-legend("topleft",legend=sum(rna$log2FoldChange<0 & k9me3>0),bty = "n",border=NA)
-legend("bottomright",legend=sum(rna$log2FoldChange>0 & k9me3<0),bty = "n",border=NA)
-legend("bottomleft",legend=sum(rna$log2FoldChange<0 & k9me3<0),bty = "n",border=NA)
+abline(v=-1,lty=2,col="grey")
+abline(v=1,lty=2,col="grey")
+abline(h=-1,lty=2,col="grey")
+abline(h=1,lty=2,col="grey")
+
+
+legend("topright",legend=sum(rna$log2FoldChange>1 & k9me3>1),bty = "n",border=NA)
+legend("topleft",legend=sum(rna$log2FoldChange<(-1) & k9me3>1),bty = "n",border=NA)
+legend("bottomright",legend=sum(rna$log2FoldChange>1 & k9me3<(-1)),bty = "n",border=NA)
+legend("bottomleft",legend=sum(rna$log2FoldChange<(-1) & k9me3<(-1)),bty = "n",border=NA)
 
 binded=cbind(rna$log2FoldChange,k9me3)
 colnames(binded) = c("RNA_seq_log2FC","K9me3_normH3_log2FC")
