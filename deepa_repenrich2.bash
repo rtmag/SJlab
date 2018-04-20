@@ -217,7 +217,7 @@ python /root/myPrograms/RepEnrich2/RepEnrich2_subset.py /root/sjlab/deepa/bam_no
 
 ######################################################################################################################
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siControl_H3K9me3_novogene \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -225,7 +225,7 @@ siControl_H3K9me3_novogene \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siControl_H3K9me3_novogene_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siControl_H3K9me3_novogene_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siControl_H3K9me3_steph \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -233,7 +233,7 @@ siControl_H3K9me3_steph \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siControl_H3K9me3_steph_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siControl_H3K9me3_steph_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siControl_H3_novogene \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -241,7 +241,7 @@ siControl_H3_novogene \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siControl_H3_novogene_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siControl_H3_novogene_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siControl_H3_steph \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -249,7 +249,7 @@ siControl_H3_steph \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siControl_H3_steph_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siControl_H3_steph_unique.bam --cpus 16 --pairedend TRUE
 #
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siTIP60_H3K9me3_novogene \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -257,7 +257,7 @@ siTIP60_H3K9me3_novogene \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3K9me3_novogene_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3K9me3_novogene_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siTIP60_H3K9me3_steph \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -265,7 +265,7 @@ siTIP60_H3K9me3_steph \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3K9me3_steph_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3K9me3_steph_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siTIP60_H3_novogene \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
@@ -273,7 +273,7 @@ siTIP60_H3_novogene \
 --fastqfile2 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3_novogene_multimap_R2.fastq \
 /root/sjlab/deepa/repenrich2_subset/siTIP60_H3_novogene_unique.bam --cpus 16 --pairedend TRUE
 
-python RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
+python /root/myPrograms/RepEnrich2/RepEnrich2.py /root/sjlab/deepa/repenrich2_ref/hg38_repeatmasker.txt \
 /root/sjlab/deepa/repenrich_results/ \
 siTIP60_H3_steph \
 /root/sjlab/deepa/repenrich2_ref/repenrich2_setup_hg38/ \
