@@ -47,3 +47,10 @@ STAR --genomeDir /root/resources/star_hg38_overhang100 \
 
 samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siK_2_*.bam > /root/sjlab/deepa_tetoolkit/bam/siK_2_sortName.bam 
 ############################################################################################################
+
+~/myPrograms/tetoolkit/bin/TEtranscripts  --sortByPos --format BAM --mode multi \
+-c /home/rtm/SJlab/deepa/bam/HCT_DMSO_Aligned.sortedByCoord.out.bam \
+-t /home/rtm/SJlab/deepa/bam/HCT_JQ1_Aligned.sortedByCoord.out.bam \
+--GTF /root/sjlab/deepa_tetoolkit/references/gencode.v25.chr_patch_hapl_scaff.annotation.gtf \
+--TE /root/sjlab/deepa_tetoolkit/references/hg38_rmsk_TE.gtf \
+--project siC_vs_siK
