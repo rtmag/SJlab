@@ -9,7 +9,7 @@ STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --outSAMtype BAM Unsorted \
 --outFileNamePrefix /root/sjlab/deepa_tetoolkit/bam/siC_1_
 
-samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siC_1_*.bam > /root/sjlab/deepa_tetoolkit/bam/siC_1_sortName.bam 
+samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siC_1_*.bam > /root/sjlab/deepa_tetoolkit/bam/siC_1_sortName.bam &
 
 STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --readFilesCommand zcat \
@@ -21,7 +21,7 @@ STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --outSAMtype BAM Unsorted \
 --outFileNamePrefix /root/sjlab/deepa_tetoolkit/bam/siC_2_
 
-samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siC_2_*.bam > /root/sjlab/deepa_tetoolkit/bam/siC_2_sortName.bam 
+samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siC_2_*.bam > /root/sjlab/deepa_tetoolkit/bam/siC_2_sortName.bam &
 
 STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --readFilesCommand zcat \
@@ -33,7 +33,7 @@ STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --outSAMtype BAM Unsorted \
 --outFileNamePrefix /root/sjlab/deepa_tetoolkit/bam/siK_1_
 
-samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siK_1_*.bam > /root/sjlab/deepa_tetoolkit/bam/siK_1_sortName.bam 
+samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siK_1_*.bam > /root/sjlab/deepa_tetoolkit/bam/siK_1_sortName.bam &
 
 STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --readFilesCommand zcat \
@@ -45,7 +45,7 @@ STAR --genomeDir /root/resources/star_hg38_overhang100 \
 --outSAMtype BAM Unsorted \
 --outFileNamePrefix /root/sjlab/deepa_tetoolkit/bam/siK_2_
 
-samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siK_2_*.bam > /root/sjlab/deepa_tetoolkit/bam/siK_2_sortName.bam 
+samtools sort -n /root/sjlab/deepa_tetoolkit/bam/siK_2_*.bam > /root/sjlab/deepa_tetoolkit/bam/siK_2_sortName.bam &
 ############################################################################################################
 
 ~/myPrograms/tetoolkit/bin/TEtranscripts  --sortByPos --format BAM --mode multi \
