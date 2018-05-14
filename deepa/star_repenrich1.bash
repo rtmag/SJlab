@@ -47,3 +47,42 @@ STAR --genomeDir /root/resources/hg38_noanno \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/sjlab/STAR/test_rna/sik2/siK_2_
 #####
+
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/STAR/test_rna/repenrich1 sic1 \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/STAR/test_rna/sic1/siC_1_Unmapped.out.mate1 \
+--fastqfile2 /root/sjlab/STAR/test_rna/sic1/siC_1_Unmapped.out.mate2 \
+/root/sjlab/STAR/test_rna/sic1/siC_1_Aligned.sortedByCoord.out.bam \
+--cpus 30 --pairedend TRUE
+
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/STAR/test_rna/repenrich1 sic2 \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/STAR/test_rna/sic2/siC_2_Unmapped.out.mate1 \
+--fastqfile2 /root/sjlab/STAR/test_rna/sic2/siC_2_Unmapped.out.mate2 \
+/root/sjlab/STAR/test_rna/sic2/siC_2_Aligned.sortedByCoord.out.bam \
+--cpus 30 --pairedend TRUE
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/STAR/test_rna/repenrich1 sik1 \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/STAR/test_rna/sik1/siK_1_Unmapped.out.mate1 \
+--fastqfile2 /root/sjlab/STAR/test_rna/sik1/siK_1_Unmapped.out.mate2 \
+/root/sjlab/STAR/test_rna/sik1/siK_1_Aligned.sortedByCoord.out.bam \
+--cpus 30 --pairedend TRUE
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/STAR/test_rna/repenrich1 sik2 \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/STAR/test_rna/sik2/siK_2_Unmapped.out.mate1 \
+--fastqfile2 /root/sjlab/STAR/test_rna/sik2/siK_2_Unmapped.out.mate2 \
+/root/sjlab/STAR/test_rna/sik2/siK_2_Aligned.sortedByCoord.out.bam \
+--cpus 30 --pairedend TRUE
+
