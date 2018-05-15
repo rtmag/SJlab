@@ -30,3 +30,15 @@ STAR --genomeDir /root/resources/hg38_noanno \
 --outFileNamePrefix /root/sjlab/STAR/TEST_siControl_H3K9me3_novogene_trimmed_STAR_
 
 ##########################################################################################
+zcat /root/sjlab/deepa/fastq_novogene/c_5_1_val_1.fq.gz|head -n10000000 > t_1.fastq
+zcat /root/sjlab/deepa/fastq_novogene/c_5_2_val_2.fq.gz|head -n10000000 > t_2.fastq
+#
+
+bowtie /root/resources/hg38_bowtie/hg38 \
+-p 30 -t -m 1 -S --chunkmbs 4000 \
+--max ./TEST_siControl_H3K9me3_novogene_multimap.fastq \
+-1 t_1.fastq \
+-2 t_2.fastq \
+./TEST_siControl_H3K9me3_novogene.sam 2> ./TEST_siControl_H3K9me3_novogene.log
+
+
