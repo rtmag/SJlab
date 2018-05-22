@@ -249,6 +249,7 @@ dev.off()
 
 vsd = readRDS("H3_H3K9me3_tss1kb_vsd.rds")
 
+k9me3 = (vsd[,3]-vsd[,1])-(vsd[,4]-vsd[,2])
 k9me3 = k9me3[order(names(k9me3))]
 
 rna = readRDS("deseq2_siC_vs_siK.rds")
@@ -282,3 +283,6 @@ legend("topleft",legend=sum(rna$log2FoldChange<(0) & k9me3>0),bty = "n",border=N
 legend("bottomright",legend=sum(rna$log2FoldChange>0 & k9me3<(0)),bty = "n",border=NA)
 legend("bottomleft",legend=sum(rna$log2FoldChange<(0) & k9me3<(0)),bty = "n",border=NA)
 dev.off()
+
+binded=cbind(H3k9me3_normh3_log2FC = k9me3,RNASeq_log2FC = rna$log2FoldChange,FDR = rna$padj )
+write.csv(binded[order(binded[,2]),],"H3K9me3_RNASeq_table.csv")
