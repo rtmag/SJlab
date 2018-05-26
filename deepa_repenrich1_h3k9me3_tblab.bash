@@ -103,7 +103,7 @@ samtools index /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_sort.ba
 
 samtools view -bS /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.sam > /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.bam
 rm /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.sam
-samtools sort root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.bam > root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam
+samtools sort /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.bam > /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam
 samtools index root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam
 #
 
