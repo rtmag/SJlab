@@ -71,9 +71,9 @@ samtools index /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_sort.bam
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.sam 2> /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.log
 
 samtools view -bS /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.sam > /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.bam
-rm /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph.sam
-samtools sort root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph.bam > root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_sort.bam
-samtools index root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_sort.bam
+rm /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.sam
+samtools sort root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph.bam > root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam
+samtools index root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam
 #
  bowtie /root/resources/hg38_bowtie/hg38 \
 -p 30 -t -m 1 -S --chunkmbs 4000 -X 1000 \
@@ -101,3 +101,75 @@ samtools index /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_sort.ba
 
 ##################################################################################################################
 
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siControl_H3K9me3_novogene \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_sort.bam \
+--cpus 30 --pairedend TRUE
+
+####
+
+siControl_H3K9me3_steph
+
+####
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siControl_H3_novogene \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_multimap_1.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_sort.bam \
+--cpus 30 --pairedend TRUE
+
+####
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siControl_H3_steph \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siTIP60_H3K9me3_novogene \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_sort.bam \
+--cpus 30 --pairedend TRUE
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siTIP60_H3K9me3_steph \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_sort.bam \
+--cpus 30 --pairedend TRUE
+
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siTIP60_H3_novogene \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_sort.bam \
+--cpus 30 --pairedend TRUE
+
+
+python /root/myPrograms/RepEnrich/RepEnrich.py \
+/root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
+/root/sjlab/deepa_repenrich1/repenrich/ siTIP60_H3_steph \
+/root/sjlab/deepa_repenrich1/reference/RepEnrich_setup_hg38/ \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_multimap_1.fastq \
+--fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_multimap_2.fastq \
+/root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_sort.bam \
+--cpus 30 --pairedend TRUE
