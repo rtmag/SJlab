@@ -116,7 +116,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_novogene_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siControl_H3K9me3_novogene.log
 
 ####
 
@@ -127,7 +127,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_novogene_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siControl_H3_novogene.log
 
 ####
 
@@ -138,7 +138,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3_steph_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siControl_H3_steph.log
 
 python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
@@ -147,7 +147,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_novogene_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siTIP60_H3K9me3_novogene.log
 
 python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/reference/hg38_repeatmasker_clean.txt \
@@ -156,7 +156,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3K9me3_steph_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siTIP60_H3K9me3_steph.log
 
 
 python /root/myPrograms/RepEnrich/RepEnrich.py \
@@ -166,7 +166,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_novogene_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siTIP60_H3_novogene.log
 
 
 python /root/myPrograms/RepEnrich/RepEnrich.py \
@@ -176,7 +176,7 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siTIP60_H3_steph_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE 2> siTIP60_H3_steph.log
 ####
 
 siControl_H3K9me3_steph
@@ -188,6 +188,6 @@ python /root/myPrograms/RepEnrich/RepEnrich.py \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_multimap_1.fastq \
 --fastqfile2 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_multimap_2.fastq \
 /root/sjlab/deepa_repenrich1/bowtie/siControl_H3K9me3_steph_sort.bam \
---cpus 30 --pairedend TRUE
+--cpus 30 --pairedend TRUE siControl_H3K9me3_steph.log
 
 ###########
