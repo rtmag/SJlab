@@ -65,6 +65,21 @@ dds <- DESeq(dds, test="LRT",
            full= ~ seq + treatment, 
            reduced= ~ seq )
 dds_res <- results(dds,contrast=c("treatment","siC","siK"))
+###############################################################################################################
+design<-data.frame(treatment=c("siC","siC",
+                           "siK","siK"
+                          ),
+                   seq=c("novogene","steph",
+                           "novogene","steph"
+                          ) )
+
+dds <- DESeqDataSetFromMatrix(countData = countData[,5:8], colData = design, 
+                  design = ~ seq + treatment )
+
+dds <- DESeq(dds, test="LRT", 
+           full= ~ seq + treatment, 
+           reduced= ~ seq )
+dds_res <- results(dds,contrast=c("treatment","siC","siK"))
 
 
 
