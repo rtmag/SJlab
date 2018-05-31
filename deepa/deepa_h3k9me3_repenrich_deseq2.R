@@ -65,6 +65,8 @@ dds <- DESeq(dds, test="LRT",
            full= ~ seq + treatment, 
            reduced= ~ seq )
 dds_res <- results(dds,contrast=c("treatment","siC","siK"))
+dLRT_vsd <- varianceStabilizingTransformation(dds)
+vsd = assay(dLRT_vsd)
 ###############################################################################################################
 design<-data.frame(treatment=c("siC","siC",
                            "siK","siK"
