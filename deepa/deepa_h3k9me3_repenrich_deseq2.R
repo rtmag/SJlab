@@ -1,6 +1,9 @@
 # DESEQ2 
 
 library('DESeq2')
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
 options(scipen=999)
 
 # In the case of a pre-assembled file of the fraction count output do the following:
@@ -26,22 +29,19 @@ countData <- data.frame(
   siK_h3_novogene = siK_h3_novogene[,4], siK_h3_steph = siK_h3_steph[,4]
 )
 
-design<-data.frame(group=c("siC_h3k9me3_novogene","siC_h3k9me3_steph",
-                           "siK_h3k9me3_novogene","siK_h3k9me3_steph",
-                           "siC_h3_novogene","siC_h3_steph",
-                           "siK_h3_novogene","siK_h3_steph"
-                           ) )
+#design<-data.frame(group=c("siC_h3k9me3_novogene","siC_h3k9me3_steph",
+#                           "siK_h3k9me3_novogene","siK_h3k9me3_steph",
+#                           "siC_h3_novogene","siC_h3_steph",
+#                           "siK_h3_novogene","siK_h3_steph"
+#                           ) )
 
-designh3k9me3<-data.frame(group=c("siC_h3k9me3_novogene","siC_h3k9me3_steph",
+design<-data.frame(group=c("siC_h3k9me3_novogene","siC_h3k9me3_steph",
                            "siK_h3k9me3_novogene","siK_h3k9me3_steph"
                            ) )
 
-designh3<-data.frame(group=c("siC_h3_novogene","siC_h3_steph",
-                           "siK_h3_novogene","siK_h3_steph"
-                           ) )
 
 
-dLRT <- DESeqDataSetFromMatrix(countData = countData[,5:8], colData = designh3 , design = ~ group )
+dLRT <- DESeqDataSetFromMatrix(countData = countData[,1:4], colData = design , design = ~ group )
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 vsd = assay(dLRT_vsd)
@@ -67,6 +67,11 @@ dds <- DESeq(dds, test="LRT",
 dds_res <- results(dds,contrast=c("treatment","siC","siK"))
 dLRT_vsd <- varianceStabilizingTransformation(dds)
 vsd = assay(dLRT_vsd)
+
+sig_vsd = vsd
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
 ###############################################################################################################
 design<-data.frame(treatment=c("siC","siC",
                            "siK","siK"
@@ -85,6 +90,8 @@ dds_res <- results(dds,contrast=c("treatment","siC","siK"))
 
 
 
+vsd = assay(dLRT_vsd)
+vsd[,c(1,3)] 
 
-
+#######
 
