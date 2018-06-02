@@ -125,7 +125,7 @@ box()
 dev.off()
 
 #bottom, left, top and righ
-postscript("h3k9me3_family_novogene.ps")
+postscript("h3k9me3_family_steph.ps")
 par(mar=c(7,1.1,1.1,6))
 x=(family[,1]-family[,2])
 names(x)=rownames(family)
@@ -151,14 +151,14 @@ dev.off()
 ###########################################################################################################
 library('edgeR')
 # In the case of seperate outputs, load the RepEnrich results - fraction counts
-h3_siC <- read.delim('siControl_H3_novogene_fraction_counts.txt', header=FALSE)
-h3_siK <- read.delim('siTIP60_H3_novogene_fraction_counts.txt', header=FALSE)
+h3_siC <- read.delim('siControl_H3_steph_fraction_counts.txt', header=FALSE)
+h3_siK <- read.delim('siTIP60_H3_steph_fraction_counts.txt', header=FALSE)
 
-h3_siC_class <- read.delim('siControl_H3_novogene_class_fraction_counts.txt', header=FALSE)
-h3_siK_class <- read.delim('siTIP60_H3_novogene_class_fraction_counts.txt', header=FALSE)
+h3_siC_class <- read.delim('siControl_H3_steph_class_fraction_counts.txt', header=FALSE)
+h3_siK_class <- read.delim('siTIP60_H3_steph_class_fraction_counts.txt', header=FALSE)
 
-h3_siC_family <- read.delim('siControl_H3_novogene_family_fraction_counts.txt', header=FALSE)
-h3_siK_family <- read.delim('siTIP60_H3_novogene_family_fraction_counts.txt', header=FALSE)
+h3_siC_family <- read.delim('siControl_H3_steph_family_fraction_counts.txt', header=FALSE)
+h3_siK_family <- read.delim('siTIP60_H3_steph_family_fraction_counts.txt', header=FALSE)
 ##################
 #' Build a counts table
 counts <- data.frame(
