@@ -151,14 +151,14 @@ dev.off()
 ###########################################################################################################
 library('edgeR')
 # In the case of seperate outputs, load the RepEnrich results - fraction counts
-h3_siC <- read.delim('siControl_H3_novogene_fraction_counts.txt', header=FALSE)
-h3_siK <- read.delim('siTIP60_H3_novogene_fraction_counts.txt', header=FALSE)
+h3_siC <- read.delim('siControl_H3_steph_fraction_counts.txt', header=FALSE)
+h3_siK <- read.delim('siTIP60_H3_steph_fraction_counts.txt', header=FALSE)
 
-h3_siC_class <- read.delim('siControl_H3_novogene_class_fraction_counts.txt', header=FALSE)
-h3_siK_class <- read.delim('siTIP60_H3_novogene_class_fraction_counts.txt', header=FALSE)
+h3_siC_class <- read.delim('siControl_H3_steph_class_fraction_counts.txt', header=FALSE)
+h3_siK_class <- read.delim('siTIP60_H3_steph_class_fraction_counts.txt', header=FALSE)
 
-h3_siC_family <- read.delim('siControl_H3_novogene_family_fraction_counts.txt', header=FALSE)
-h3_siK_family <- read.delim('siTIP60_H3_novogene_family_fraction_counts.txt', header=FALSE)
+h3_siC_family <- read.delim('siControl_H3_steph_family_fraction_counts.txt', header=FALSE)
+h3_siK_family <- read.delim('siTIP60_H3_steph_family_fraction_counts.txt', header=FALSE)
 ##################
 #' Build a counts table
 counts <- data.frame(
@@ -234,16 +234,16 @@ logcpm <- as.data.frame(logcpm)
 colnames(logcpm) <- factor(meta$condition)
 family = logcpm
 
-saveRDS(class,"h3_class_novogene.rds")
-saveRDS(fraction,"h3_fraction_novogene.rds")
-saveRDS(family,"h3_family_novogene.rds")
+saveRDS(class,"h3_class_steph.rds")
+saveRDS(fraction,"h3_fraction_steph.rds")
+saveRDS(family,"h3_family_steph.rds")
 
 ##########################################################
-class=readRDS("h3_class_novogene.rds")
-fraction=readRDS("h3_fraction_novogene.rds")
-family=readRDS("h3_family_novogene.rds")
+class=readRDS("h3_class_steph.rds")
+fraction=readRDS("h3_fraction_steph.rds")
+family=readRDS("h3_family_steph.rds")
 
-postscript("h3_class_novogene.ps")
+postscript("h3_class_steph.ps")
 par(mar=c(4,1.1,1.1,6))
 x=(class[,1]-class[,2])
 names(x)=rownames(class)
@@ -258,7 +258,7 @@ abline(h=0)
 box()
 dev.off()
 
-postscript("h3_fraction_novogene.ps",width=12)
+postscript("h3_fraction_steph.ps",width=12)
 par(mar=c(4,1.1,1.1,4))
 x=(fraction[,1]-fraction[,2])
 names(x)=rownames(fraction)
@@ -275,7 +275,7 @@ box()
 dev.off()
 
 #bottom, left, top and righ
-postscript("h3_family_novogene.ps")
+postscript("h3_family_steph.ps")
 par(mar=c(7,1.1,1.1,6))
 x=(family[,1]-family[,2])
 names(x)=rownames(family)
@@ -299,11 +299,11 @@ dev.off()
 #######################################################################################################################################
 ###########################################################################################################
 
-class=readRDS("h3k9me3_class_novogene.rds")
-fraction=readRDS("h3k9me3_fraction_novogene.rds")
-family=readRDS("h3k9me3_family_novogene.rds")
+class=readRDS("h3k9me3_class_steph.rds")
+fraction=readRDS("h3k9me3_fraction_steph.rds")
+family=readRDS("h3k9me3_family_steph.rds")
 
-pdf("h3k9me3_class_novogene.pdf")
+pdf("h3k9me3_class_steph.pdf")
 par(mar=c(4,1.1,1.1,6))
 x=(class[,1]-class[,2])
 names(x)=rownames(class)
@@ -318,7 +318,7 @@ abline(h=0)
 box()
 dev.off()
 
-pdf("h3k9me3_fraction_novogene.pdf",width=12)
+pdf("h3k9me3_fraction_steph.pdf",width=12)
 par(mar=c(4,1.1,1.1,4))
 x=(fraction[,1]-fraction[,2])
 names(x)=rownames(fraction)
@@ -335,7 +335,7 @@ box()
 dev.off()
 
 #bottom, left, top and righ
-pdf("h3k9me3_family_novogene.pdf")
+pdf("h3k9me3_family_steph.pdf")
 par(mar=c(7,1.1,1.1,6))
 x=(family[,1]-family[,2])
 names(x)=rownames(family)
@@ -353,11 +353,11 @@ dev.off()
 
 ##################################################################################################################
 
-class=readRDS("h3_class_novogene.rds")
-fraction=readRDS("h3_fraction_novogene.rds")
-family=readRDS("h3_family_novogene.rds")
+class=readRDS("h3_class_steph.rds")
+fraction=readRDS("h3_fraction_steph.rds")
+family=readRDS("h3_family_steph.rds")
 
-pdf("h3_class_novogene.pdf")
+pdf("h3_class_steph.pdf")
 par(mar=c(4,1.1,1.1,6))
 x=(class[,1]-class[,2])
 names(x)=rownames(class)
@@ -372,7 +372,7 @@ abline(h=0)
 box()
 dev.off()
 
-pdf("h3_fraction_novogene.pdf",width=12)
+pdf("h3_fraction_steph.pdf",width=12)
 par(mar=c(4,1.1,1.1,4))
 x=(fraction[,1]-fraction[,2])
 names(x)=rownames(fraction)
@@ -389,7 +389,7 @@ box()
 dev.off()
 
 #bottom, left, top and righ
-pdf("h3_family_novogene.pdf")
+pdf("h3_family_steph.pdf")
 par(mar=c(7,1.1,1.1,6))
 x=(family[,1]-family[,2])
 names(x)=rownames(family)
