@@ -25,4 +25,6 @@ samtools index siTIP60_H3_steph_sort.bam &
 siTIP60_H3K9me3_novogene.bw siTIP60_H3K9me3_steph.bw siTIP60_H3_novogene.bw siTIP60_H3_steph.bw -p max -bs 200 -o multiBigwig.npz
 
 plotPCA --corData multiBigwig.npz -o multiBigwig_pca.pdf
-plotCorrelation --corData multiBigwig.npz -c spearman -o multiBigwig_plotcorrelation.pdf
+plotCorrelation --whatToPlot heatmap --corData multiBigwig.npz -c spearman -o multiBigwig_plotcorrelation.pdf
+plotCorrelation --whatToPlot scatterplot --corData multiBigwig.npz -c spearman -o multiBigwig_plotcorrelation_scatter.pdf
+
