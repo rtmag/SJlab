@@ -58,28 +58,24 @@ bowtie /home/roberto/references/hg38_bowtie/hg38 -p 45 -t -m 1 -S --chunkmbs 400
 #####
 cd /home/roberto/deepa/novogene/repenrich_bowtie2/
 
-samtools view -bS HCT_siControl_HWN2YCCXX_L5_uniq.sam | samtools sort - HCT_siControl_HWN2YCCXX_L5_uniq
-samtools index HCT_siControl_HWN2YCCXX_L5_uniq.bam
-
-samtools view -bS HCT_siK_HVNYLCCXX_L2_uniq.sam | samtools sort - HCT_siK_HVNYLCCXX_L2_uniq
-samtools index HCT_siK_HVNYLCCXX_L2_uniq.bam
-
-samtools view -bS HCT116_siC_uniq.sam | samtools sort - HCT116_siC_uniq
-samtools index HCT116_siC_uniq.bam
-
-samtools view -bS HCT116_siK_uniq.sam | samtools sort - HCT116_siK_uniq
-samtools index HCT116_siK_uniq.bam
-
-samtools view -bS HCT_DMSO_HWN2YCCXX_L2_uniq.sam | samtools sort - HCT_DMSO_HWN2YCCXX_L2_uniq
-samtools index HCT_DMSO_HWN2YCCXX_L2_uniq.bam
-##
-samtools view -bS HCT_JQ1_HWN2YCCXX_L5_uniq.sam | samtools sort - HCT_JQ1_HWN2YCCXX_L5_uniq
-samtools index HCT_JQ1_HWN2YCCXX_L5_uniq.bam
-
-samtools view -bS HCT116_siC_DMSO_uniq.sam | samtools sort - HCT116_siC_DMSO_uniq
-samtools index HCT116_siC_DMSO_uniq.bam
-
-samtools view -bS HCT116_siC_JQ1_uniq.sam | samtools sort - HCT116_siC_JQ1_uniq
-samtools index HCT116_siC_JQ1_uniq.bam
+samtools view -bS HCT_siControl_HWN2YCCXX_L5_uniq.sam | samtools sort - HCT_siControl_HWN2YCCXX_L5_uniq &
+samtools view -bS HCT_siK_HVNYLCCXX_L2_uniq.sam | samtools sort - HCT_siK_HVNYLCCXX_L2_uniq &
+samtools view -bS HCT116_siC_uniq.sam | samtools sort - HCT116_siC_uniq &
+samtools view -bS HCT116_siK_uniq.sam | samtools sort - HCT116_siK_uniq &
+#
+samtools view -bS HCT_DMSO_HWN2YCCXX_L2_uniq.sam | samtools sort - HCT_DMSO_HWN2YCCXX_L2_uniq &
+samtools view -bS HCT_JQ1_HWN2YCCXX_L5_uniq.sam | samtools sort - HCT_JQ1_HWN2YCCXX_L5_uniq &
+samtools view -bS HCT116_siC_DMSO_uniq.sam | samtools sort - HCT116_siC_DMSO_uniq &
+samtools view -bS HCT116_siC_JQ1_uniq.sam | samtools sort - HCT116_siC_JQ1_uniq &
+#
+samtools index HCT_siControl_HWN2YCCXX_L5_uniq.bam &
+samtools index HCT_siK_HVNYLCCXX_L2_uniq.bam &
+samtools index HCT116_siC_uniq.bam &
+samtools index HCT116_siK_uniq.bam &
+#
+samtools index HCT_DMSO_HWN2YCCXX_L2_uniq.bam &
+samtools index HCT_JQ1_HWN2YCCXX_L5_uniq.bam &
+samtools index HCT116_siC_DMSO_uniq.bam &
+samtools index HCT116_siC_JQ1_uniq.bam &
 
 ###
