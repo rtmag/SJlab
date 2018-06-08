@@ -25,7 +25,8 @@ counts <- data.frame(
 )
 anno = siC_r1[,3][!siC_r1[,3] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite")]
 counts = counts[!siC_r1[,3] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite"), ]
-
+####################################################################################################################################
+# siC VS siK
 design<-data.frame(batch=c("1","2","1","2"),
                    Treatment=c("siC","siC","siK","siK") )
 
@@ -35,16 +36,16 @@ dds <- DESeq(dds, test="LRT",
            full= ~ batch + Treatment, 
            reduced= ~ batch )
 dds_res = results(dds,contrast=c("Treatment","siC","siK"))
-
-
+####################################################################################################################################
 dLRT_vsd <- varianceStabilizingTransformation(dds)
 vsd = assay(dLRT_vsd)
-
+####################################################################################################################################
+# PCA
 pdf("deseq_pca.pdf")
 plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Treatment","batch"))
 dev.off()
-#
-
+####################################################################################################################################
+# Volcano
 pdf("deseq_volcano.pdf")
 plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*' Fold Change ( siControl / siTIP60 )'),
               ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-2,2))
@@ -55,11 +56,11 @@ points(dds_res$log2FoldChange[abs(dds_res$log2FoldChange)>.5 & dds_res$padj<0.05
        -log10(dds_res$padj)[abs(dds_res$log2FoldChange)>.5 & dds_res$padj<0.05],
       col="red",pch=20)
 dev.off()
-#
+####################################################################################################################################
+# tenames
 tenames=names(which(table(anno[which(dds_res$padj<0.05)])>5))
 
 track=as.character(anno[ which(dds_res$padj<0.05 & anno %in% tenames) ] )
-#ffb3ba #ffdfba #ffffba #baffc9 #bae1ff #ffd3fd "grey"
 
 track[track=="ERVL"]=1
 track[track=="ERV1"]=2
@@ -79,7 +80,7 @@ colnames(sig_vsd) <- c("siControl.1","siControl.2","siTIP60.1","siTIP60.2")
 
 colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
 heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="Repetitive Elements with signficant change in expression",key.title="RE expression",cexCol=.8,RowSideColors=rlab)
+labRow = FALSE,xlab="", ylab="Repetitive Elements",key.title="RE expression",cexCol=.8,RowSideColors=rlab)
 
 legend("topright",legend=c("ERVL","ERV1","L1","ERVL-MaLR","TcMar-Tigger","Alu","SVA"),cex = 0.75,inset=c(-.02,-.05),
        fill=c("#ffb3ba","#ffdfba","#ffffba","#baffc9","#bae1ff","#ffd3fd","grey"), border=T, bty="n" )
