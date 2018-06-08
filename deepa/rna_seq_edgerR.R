@@ -79,29 +79,40 @@ boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
 
 
 ####
-
-pdf("replicates_repenrich_NoFDR.pdf")
-# Plot Fold Changes for repeat classes and types
+results=results_ori
+current_contrast = allcontrasts[1]
+#FDR 5% Filtered
 for(current_contrast in allcontrasts) {
-  logFC <- results[, paste0("logFC.", current_contrast)]
+  results=results[!(results[,5] %in% c("srpRNA", "rRNA", "snRNA", "tRNA", "scRNA", "Satellite")),]
+  
+  logFC <- results[ , 
+		   paste0("logFC.", current_contrast)]
   # Plot the repeat classes
-  classes <- with(results, reorder(class, -logFC, median))
+	
+pdf(paste(current_contrast,"_class_replicates_repenrich_NoFDR_Filtered.pdf",sep=""))
+  classes <- with(results[,], reorder(class, -logFC, median))
   par(mar=c(6,10,4,1))
-  boxplot(logFC ~ classes, data=results, outline=FALSE, horizontal=TRUE,
-          las=2, xlab="log(Fold Change)", main=paste("Class",current_contrast))
+  boxplot(logFC ~ as.vector(classes), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
   abline(v=0)
-  # Plot the repeat types
+dev.off()
+	
+pdf(paste(current_contrast,"_type_replicates_repenrich_NoFDR_Filtered.pdf",sep=""))
+  # Plot the repeat types	
+	  par(mar=c(6,10,4,1))
   types <- with(results, reorder(type, -logFC, median))
-  boxplot(logFC ~ types, data=results, outline=FALSE, horizontal=TRUE,
-          las=2, xlab="log(Fold Change)", main=paste("Type",current_contrast) )
+    boxplot(logFC ~ as.vector(types), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Type",current_contrast,"FDR 5%") )
   abline(v=0)
-		#plot repeats
+dev.off()
+
+pdf(paste(current_contrast,"_repeats_replicates_repenrich_NoFDR_Filtered.pdf",sep=""))
+	#plot repeats
 		  par(mar=c(6,10,4,1),cex.axis=.4)
-  repe <- with(results, reorder(repeats, -logFC, median))
+  repe <- with(results[results[, paste0("FDR.", current_contrast)],], reorder(repeats, -logFC, median))
 boxplot(logFC ~ as.vector(repe), data=results, outline=FALSE, horizontal=TRUE,
-          las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast))
+          las=2, xlab="log2(Fold Change)", main=paste("Repeat",current_contrast,"FDR 5%"))
   abline(v=0)
 		  par(mar=c(6,10,4,1),cex.axis=1)
 	dev.off()
-
 }
