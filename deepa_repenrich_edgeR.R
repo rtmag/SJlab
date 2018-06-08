@@ -33,7 +33,7 @@ counts <- data.frame(
 meta <- data.frame(
 	row.names=colnames(counts),
 	condition=c("siC","siC","siK","siK","DMSO","DMSO","JQ1","JQ1"),
-	libsize=c(4254957,6045550,6563529,6769278,5100955,4492173,6613606,6288050)
+	libsize=c(10894626,11290341,10064917,11734160,12718356,12862303,10709758,11871142)
 )
 
 # Define the library size and conditions for the GLM
