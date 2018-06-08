@@ -35,7 +35,10 @@ dds <- DESeqDataSetFromMatrix(countData = counts[,1:4], colData = design, design
 dds <- DESeq(dds, test="LRT", 
            full= ~ batch + Treatment, 
            reduced= ~ batch )
+sizeFactors(dds)
 dds_res = results(dds,contrast=c("Treatment","siC","siK"))
+table(dds_res2$padj<0.05)
+table(is.na(dds_res$padj<0.05))
 ####################################################################################################################################
 dLRT_vsd <- varianceStabilizingTransformation(dds)
 vsd = assay(dLRT_vsd)
