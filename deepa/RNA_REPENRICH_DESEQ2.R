@@ -58,13 +58,31 @@ dev.off()
 #
 tenames=names(which(table(anno[which(dds_res$padj<0.05)])>5))
 
+track=as.character(anno[ which(dds_res$padj<0.05 & anno %in% tenames) ] )
+#ffb3ba #ffdfba #ffffba #baffc9 #bae1ff #ffd3fd "grey"
+
+track[track=="ERVL"]=1
+track[track=="ERV1"]=2
+track[track=="L1"]=3
+track[track=="ERVL-MaLR"]=4
+track[track=="TcMar-Tigger"]=5
+track[track=="Alu"]=6
+track[track=="SVA"]=7
+track=as.numeric(track)
+colores=c("#ffb3ba","#ffdfba","#ffffba","#baffc9","#bae1ff","#ffd3fd","grey")
+rlab = colores[track]
+
+
 sig_vsd = vsd[which( dds_res$padj<0.05 & anno %in% tenames),]
 colnames(sig_vsd) <- c("siControl.1","siControl.2","siTIP60.1","siTIP60.2")
 
 
 colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
 heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="TE",key.title="TE expression",cexCol=.8)
+labRow = FALSE,xlab="", ylab="TE",key.title="TE expression",cexCol=.8,RowSideColors=rlab)
+
+legend("topright",legend=c("ERVL","ERV1","L1","ERVL-MaLR","TcMar-Tigger","Alu","SVA"),
+       fill=c("#ffb3ba","#ffdfba","#ffffba","#baffc9","#bae1ff","#ffd3fd","grey"), border=T, bty="n" )
 
 
 
