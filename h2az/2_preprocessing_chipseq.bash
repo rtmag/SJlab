@@ -107,3 +107,14 @@ I=/home/roberto/h2az/bam_chip/h2az_siTIP60_Aligned.sortedByCoord.out.bam \
 O=/home/roberto/h2az/bam_chip/h2az_siTIP60_rmdup.bam \
 M=/home/roberto/h2az/bam_chip/h2az_siTIP60_rmdup.mfile &
 ##################################################################################################
+
+bamToBed -i ach2az_siControl_rmdup.bam > ../bed/ach2az_siControl_rmdup.bed &
+bamToBed -i ach2az_siTIP60_rmdup.bam > ../bed/ach2az_siTIP60_rmdup.bed &
+bamToBed -i input_siControl_rmdup.bam > ../bed/input_siControl_rmdup.bed &
+bamToBed -i input_siTIP60_rmdup.bam > ../bed/input_siTIP60_rmdup.bed &
+
+
+diffReps.pl --treatment ach2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
+--control ach2az_siControl_rmdup.bed --bco input_siControl_rmdup.bed \
+--nohs --noanno --nsd 20 \
+--meth gt --gname hg38 --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
