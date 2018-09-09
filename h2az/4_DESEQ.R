@@ -35,7 +35,7 @@ library(factoextra)
 library(RColorBrewer)
 
 design<-data.frame(group=c("shrh_siC","tham_siC","zhou_siC",
-                "shrh_siK","tham_siK","zhou_siK")
+                "shrh_siK","tham_siK","zhou_siK") )
 
 dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ group )
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
