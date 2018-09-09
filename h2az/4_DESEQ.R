@@ -1,4 +1,3 @@
-
 library(Rsubread)
 options(scipen=999)
 
@@ -24,9 +23,7 @@ colnames(dat)=c("shrh_siC","tham_siC","zhou_siC",
                 "shrh_siK","tham_siK","zhou_siK")
 
 saveRDS(dat,"RNASEQ_counts.rds")
-
 ############################################################################################################
-
 countData=readRDS("RNASEQ_counts.rds")
 options(scipen=999)
 library(DESeq2)
@@ -48,3 +45,4 @@ plotPCA(dLRT_vsd,ntop=50000,intgroup=c("group"))
 dev.off()
 
 saveRDS(vsd,"h2az_vsd.rds")
+############################################################################################################
