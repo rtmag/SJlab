@@ -116,5 +116,5 @@ bamToBed -i input_siTIP60_rmdup.bam > ../bed/input_siTIP60_rmdup.bed &
 
 diffReps.pl --treatment ach2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
 --control ach2az_siControl_rmdup.bed --bco input_siControl_rmdup.bed \
---nohs --noanno --nsd 20 \
---meth gt --gname hg38 --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
+--nohs --noanno --nsd 20 --chrlen /home/roberto/references/hg38.chrom.sizes \
+--meth gt --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
