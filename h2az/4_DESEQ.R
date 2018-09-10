@@ -79,6 +79,12 @@ write.table(rownames(res[which(res$padj<0.05 & res$log2FoldChange>(1)),]),"Upreg
 write.table(rownames(res[which(res$padj<0.05 & res$log2FoldChange<(-1)),]),"Downreg_nShink.txt",
             sep="\t",quote=F,row.names=F,col.names=F )
 
+write.table(rownames(dLRT_res[which(dLRT_res$padj<0.05 & abs(dLRT_res$log2FoldChange)>1),]),"all_notShink.txt",
+            sep="\t",quote=F,row.names=F,col.names=F )
+
+write.table(rownames(res[which(res$padj<0.05 & abs(res$log2FoldChange)>1),]),"all_Shink.txt",
+            sep="\t",quote=F,row.names=F,col.names=F )
+
 gmt = read.table("HallMark_e2f_targets.txt",sep = "\t", head=T,stringsAsFactors=F)
 vsd = readRDS("h2az_vsd.rds")
 
