@@ -118,3 +118,5 @@ diffReps.pl --treatment ach2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
 --control ach2az_siControl_rmdup.bed --bco input_siControl_rmdup.bed \
 --nohs --noanno --nsd 20 --chrlen /home/roberto/references/hg38.chrom.sizes \
 --meth gt --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
+#################################################################################################
+annotatePeaks.pl ach2az_sik_vs_siC_down_123.bed hg38 -annStats ach2az_sik_vs_siC_down_123.annStats > ach2az_sik_vs_siC_down_123.bed.anno
