@@ -93,6 +93,8 @@ write.table(rownames(dLRT_res[which(dLRT_res$padj<0.001 & dLRT_res$log2FoldChang
 write.table(rownames(dLRT_res[which(dLRT_res$padj<0.001 & dLRT_res$log2FoldChange<(-1.2)),]),"Downreg_notShink_strict.txt",
             sep="\t",quote=F,row.names=F,col.names=F )
 
+write.table(rownames(dLRT_res[which(dLRT_res$padj<0.001 & abs(dLRT_res$log2FoldChange)>1.5),]),"notShink_strict.txt",
+            sep="\t",quote=F,row.names=F,col.names=F )
 
 gmt = read.table("HallMark_e2f_targets.txt",sep = "\t", head=T,stringsAsFactors=F)
 vsd = readRDS("h2az_vsd.rds")
