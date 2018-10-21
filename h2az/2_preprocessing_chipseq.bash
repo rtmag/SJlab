@@ -119,6 +119,11 @@ diffReps.pl --treatment ach2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
 --nohs --noanno --nsd 20 --chrlen /home/roberto/references/hg38.chrom.sizes \
 --meth gt --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
 ##################################################################################################
+samtools index h2az_siControl_rmdup.bam &
+samtools index h2az_siTIP60_rmdup.bam &
+samtools index ach2az_siControl_rmdup.bam &
+samtools index ach2az_siTIP60_rmdup.bam &
+##################################################################################################
 bamCoverage -p max -bs 1 --normalizeUsing CPM -b /home/roberto/h2az/bam_chip/h2az_siControl_rmdup.bam \
 -o /home/roberto/h2az/bw/h2az_siControl.bw
 
