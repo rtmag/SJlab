@@ -125,15 +125,15 @@ samtools index ach2az_siControl_rmdup.bam &
 samtools index ach2az_siTIP60_rmdup.bam &
 ##################################################################################################
 bamCoverage -p max -bs 1 --normalizeUsing CPM -b /home/roberto/h2az/bam_chip/h2az_siControl_rmdup.bam \
--o /home/roberto/h2az/bw/h2az_siControl.bw
+-o /home/roberto/h2az/bw/h2az_siControl.bw &
 
 bamCoverage -p max -bs 1 --normalizeUsing CPM -b /home/roberto/h2az/bam_chip/h2az_siTIP60_rmdup.bam \
--o /home/roberto/h2az/bw/h2az_siTIP60.bw
+-o /home/roberto/h2az/bw/h2az_siTIP60.bw &
 
 bamCoverage -p max -bs 1 --normalizeUsing CPM -b /home/roberto/h2az/bam_chip/ach2az_siControl_rmdup.bam \
--o /home/roberto/h2az/bw/ach2az_siControl.bw
+-o /home/roberto/h2az/bw/ach2az_siControl.bw &
 
 bamCoverage -p max -bs 1 --normalizeUsing CPM -b /home/roberto/h2az/bam_chip/ach2az_siTIP60_rmdup.bam \
--o /home/roberto/h2az/bw/ach2az_siTIP60.bw
+-o /home/roberto/h2az/bw/ach2az_siTIP60.bw &
 #################################################################################################
 annotatePeaks.pl ach2az_sik_vs_siC_down_123.bed hg38 -annStats ach2az_sik_vs_siC_down_123.annStats > ach2az_sik_vs_siC_down_123.bed.anno
