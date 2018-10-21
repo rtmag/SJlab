@@ -105,12 +105,12 @@ sig_vsd = vsd[(rownames(vsd) %in% gmt[,1]) & ((abs(dLRT_res$log2FoldChange)>1 & 
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 for(ix in 1:dim(sig_vsd)[1]){
-  sig_vsd[ix,1] = sig_vsd[ix,1]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,4] = sig_vsd[ix,4]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,2] = sig_vsd[ix,2]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,5] = sig_vsd[ix,5]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,3] = sig_vsd[ix,3]/mean(sig_vsd[ix,c(3,6)])
-  sig_vsd[ix,6] = sig_vsd[ix,6]/mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,1] = sig_vsd[ix,1]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,4] = sig_vsd[ix,4]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,2] = sig_vsd[ix,2]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,5] = sig_vsd[ix,5]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,3] = sig_vsd[ix,3]-mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,6] = sig_vsd[ix,6]-mean(sig_vsd[ix,c(3,6)])
   }
 
   colnames(sig_vsd) = c("shrh_siC","tham_siC","zhou_siC",
@@ -125,12 +125,12 @@ sig_vsd = vsd[(rownames(vsd) %in% gmt[,1]),]
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 for(ix in 1:dim(sig_vsd)[1]){
-  sig_vsd[ix,1] = sig_vsd[ix,1]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,4] = sig_vsd[ix,4]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,2] = sig_vsd[ix,2]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,5] = sig_vsd[ix,5]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,3] = sig_vsd[ix,3]/mean(sig_vsd[ix,c(3,6)])
-  sig_vsd[ix,6] = sig_vsd[ix,6]/mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,1] = sig_vsd[ix,1]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,4] = sig_vsd[ix,4]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,2] = sig_vsd[ix,2]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,5] = sig_vsd[ix,5]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,3] = sig_vsd[ix,3]-mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,6] = sig_vsd[ix,6]-mean(sig_vsd[ix,c(3,6)])
   }
 
   colnames(sig_vsd) = c("shrh_siC","tham_siC","zhou_siC",
@@ -147,12 +147,12 @@ sig_vsd = vsd[rownames(vsd) %in% c("LIN9","LIN54","LIN52","LIN37","FOXM1","MYB",
                                     "FAM111A","NEIL3","E2F1","E2F3","E2F6","E2F7","E2F8"),]
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 for(ix in 1:dim(sig_vsd)[1]){
-  sig_vsd[ix,1] = sig_vsd[ix,1]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,4] = sig_vsd[ix,4]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,2] = sig_vsd[ix,2]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,5] = sig_vsd[ix,5]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,3] = sig_vsd[ix,3]/mean(sig_vsd[ix,c(3,6)])
-  sig_vsd[ix,6] = sig_vsd[ix,6]/mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,1] = sig_vsd[ix,1]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,4] = sig_vsd[ix,4]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,2] = sig_vsd[ix,2]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,5] = sig_vsd[ix,5]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,3] = sig_vsd[ix,3]-mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,6] = sig_vsd[ix,6]-mean(sig_vsd[ix,c(3,6)])
   }
 
   colnames(sig_vsd) = c("shrh_siC","tham_siC","zhou_siC",
@@ -170,12 +170,12 @@ sig_vsd = vsd[rownames(vsd) %in% c("LIN9","LIN54","LIN52","LIN37","FOXM1","MYB",
 sig_vsd = sig_vsd[complete.cases(sig_vsd),]
 sig_vsd = sig_vsd[rownames(sig_vsd) %in% rownames(dLRT_res)[which(abs(dLRT_res$log2FoldChange)>1 & dLRT_res$padj<0.05)], ]
 for(ix in 1:dim(sig_vsd)[1]){
-  sig_vsd[ix,1] = sig_vsd[ix,1]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,4] = sig_vsd[ix,4]/mean(sig_vsd[ix,c(1,4)])
-  sig_vsd[ix,2] = sig_vsd[ix,2]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,5] = sig_vsd[ix,5]/mean(sig_vsd[ix,c(2,5)])
-  sig_vsd[ix,3] = sig_vsd[ix,3]/mean(sig_vsd[ix,c(3,6)])
-  sig_vsd[ix,6] = sig_vsd[ix,6]/mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,1] = sig_vsd[ix,1]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,4] = sig_vsd[ix,4]-mean(sig_vsd[ix,c(1,4)])
+  sig_vsd[ix,2] = sig_vsd[ix,2]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,5] = sig_vsd[ix,5]-mean(sig_vsd[ix,c(2,5)])
+  sig_vsd[ix,3] = sig_vsd[ix,3]-mean(sig_vsd[ix,c(3,6)])
+  sig_vsd[ix,6] = sig_vsd[ix,6]-mean(sig_vsd[ix,c(3,6)])
   }
 
   colnames(sig_vsd) = c("shrh_siC","tham_siC","zhou_siC",
