@@ -119,12 +119,12 @@ bamToBed -i h2az_siTIP60_rmdup.bam > ../bed/h2az_siTIP60_rmdup.bed &
 diffReps.pl --treatment ach2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
 --control ach2az_siControl_rmdup.bed --bco input_siControl_rmdup.bed \
 --nohs --noanno --nsd 20 --chrlen /home/roberto/references/hg38.chrom.sizes \
---meth gt --report ach2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
+--meth gt --report ach2az_sik_vs_siC_1000w_nsd20 --frag 100 --nproc 60 --window 1000 --pval 0.0001 &
 
 diffReps.pl --treatment h2az_siTIP60_rmdup.bed --btr input_siTIP60_rmdup.bed \
 --control h2az_siControl_rmdup.bed --bco input_siControl_rmdup.bed \
---nohs --noanno --nsd 20 --chrlen /home/roberto/references/hg38.chrom.sizes \
---meth gt --report h2az_sik_vs_siC --frag 100 --nproc 60 --window 100 --pval 0.0001
+--nohs --noanno --nsd 2 --chrlen /home/roberto/references/hg38.chrom.sizes \
+--meth gt --report h2az_sik_vs_siC_1000w_nsd2 --frag 100 --nproc 60 --window 1000 --pval 0.0001 &
 ##################################################################################################
 samtools index h2az_siControl_rmdup.bam &
 samtools index h2az_siTIP60_rmdup.bam &
