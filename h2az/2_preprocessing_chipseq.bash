@@ -184,3 +184,17 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap 
 -m /home/roberto/h2az/heatmap/h2az_danpos_downMostly.mat --regionsLabel "peaks" \
  --samplesLabel "siControl" "siTIP60"  \
 -out /home/roberto/h2az/heatmap/h2az_danpos.pdf
+## AC
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/ach2az_danpos_downMostly.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/ach2az_danpos_downMostly.mat --regionsLabel "peaks" \
+ --samplesLabel "siControl" "siTIP60"  \
+-out /home/roberto/h2az/heatmap/ach2az_danpos_downMostly.pdf
+
+pdfjam h2az_danpos.pdf ach2az_danpos_downMostly.pdf --nup 2x1 --landscape -o ./diff_h2az.pdf
