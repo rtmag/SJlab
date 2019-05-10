@@ -169,3 +169,18 @@ macs2 callpeak -g hs -q 0.05 --keep-dup auto --call-summits -n h2az_siControl_na
 macs2 callpeak -g hs -q 0.05 --keep-dup auto --call-summits -n h2az_siTIP60_narrow --outdir /home/roberto/h2az/macs2 \
 -t /home/roberto/h2az/bam_chip/h2az_siTIP60_rmdup.bam -c /home/roberto/h2az/bam_chip/input_siTIP60_rmdup.bam &
 #################################################################################################
+more h2az_sik_vs_siC_1000w_nsd2|awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1 && $14<0.05){print $0} }} }' |cut -f1,2,3,11,12 >  h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed  
+
+h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl_rmdup.smooth.qnor.bw \
+/home/roberto/h2az/bw/h2az_siTIP60_rmdup.smooth.qnor.bw \
+-R /home/roberto/h2az/bed/h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_danpos_downMostly.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_danpos_downMostly.mat --regionsLabel "peaks" \
+ --samplesLabel "siControl" "siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_danpos.pdf
