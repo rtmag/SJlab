@@ -320,11 +320,6 @@ computeMatrix reference-point \
 -R /home/roberto/references/hg38_tss.bed --referencePoint center \
 --sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_tss_hg38.mat
 #
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
--m /home/roberto/h2az/heatmap/h2az_tss_hg38.mat --regionsLabel "TSS" \
- --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
--out /home/roberto/h2az/heatmap/h2az_tss_hg38.pdf
-
 computeMatrix reference-point \
 -S \
 /home/roberto/h2az/bw/ach2az_siControl.bw \
@@ -332,7 +327,13 @@ computeMatrix reference-point \
 -R /home/roberto/references/hg38_tss.bed --referencePoint center \
 --sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat
 #
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
--m /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat --regionsLabel "TSS" \
- --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_tss_hg38.mat --regionsLabel "Genes" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_tss_hg38.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat --regionsLabel "Genes" \
+ --samplesLabel "acH2AZ siControl" "acH2AZ siTIP60"  \
 -out /home/roberto/h2az/heatmap/ach2az_tss_hg38.pdf
