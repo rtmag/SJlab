@@ -198,3 +198,141 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap 
 -out /home/roberto/h2az/heatmap/ach2az_danpos_downMostly.pdf
 
 pdfjam h2az_danpos.pdf ach2az_danpos_downMostly.pdf --nup 2x1 --landscape -o ./diff_h2az.pdf
+#################################################################################################
+#################################################################################################
+#################################################################################################
+# DANPOS
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl_rmdup.smooth.qnor.bw \
+/home/roberto/h2az/bw/h2az_siTIP60_rmdup.smooth.qnor.bw \
+/home/roberto/h2az/bw/ach2az_siControl_rmdup.smooth.qnor.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60_rmdup.smooth.qnor.bw \
+-R /home/roberto/h2az/bed/h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_danpos_downMostly_acdanpos.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_danpos_downMostly_acdanpos.mat --regionsLabel "peaks" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_danpos_downMostly_acdanpos.pdf
+
+#################################################################################################
+
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_downMostly.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_downMostly.mat --regionsLabel "peaks" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_downMostly.pdf
+
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/h2az_sik_vs_siC_1000w_nsd2_log2fc1_fdr5.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_downMostly.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_downMostly.mat --regionsLabel "peaks" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_downMostly_onlyh2az.pdf
+#################################################################################################
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+grep "Up" /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20 > /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_deeptools.bed
+echo "#High acH2AZ in siK" >> /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_deeptools.bed
+grep "Down" /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20 >> /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_deeptools.bed
+echo "#High H2AZ in siC" >> /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_deeptools.bed
+
+grep "Down" /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20 > /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_down_deeptools.bed
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_deeptools.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/ach2az_diffreps.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/ach2az_diffreps.mat  \
+ --samplesLabel "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/ach2az_diffreps.pdf
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_down_deeptools.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/ach2az_diffreps_down.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/ach2az_diffreps_down.mat  \
+ --samplesLabel "acH2AZ siControl" "acH2AZ siTIP60" --regionsLabel "peaks"  \
+-out /home/roberto/h2az/heatmap/ach2az_diffreps_down.pdf
+
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+-R /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_down_deeptools.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_diffreps_down.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_diffreps_down.mat  \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" --regionsLabel "peaks" \
+-out /home/roberto/h2az/heatmap/h2az_diffreps_down.pdf
+
+#################################################################################################
+# TSS
+
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/references/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/tss_hg38.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/tss_hg38.mat --regionsLabel "TSS" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/tss_hg38.pdf
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+-R /home/roberto/references/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/h2az_tss_hg38.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/h2az_tss_hg38.mat --regionsLabel "TSS" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/h2az_tss_hg38.pdf
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R /home/roberto/references/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Blues \
+-m /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat --regionsLabel "TSS" \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out /home/roberto/h2az/heatmap/ach2az_tss_hg38.pdf
