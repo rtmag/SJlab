@@ -298,7 +298,6 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap 
 #################################################################################################
 # TSS
 
-
 computeMatrix reference-point \
 -S \
 /home/roberto/h2az/bw/h2az_siControl.bw \
@@ -368,3 +367,34 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap 
 -m /home/roberto/h2az/heatmap/H3_in_ach2az_diffreps_down.mat  \
  --samplesLabel "H3 siControl Novogene" "H3 siTIP60 Novogene" "H3 siControl Steph" "H3 siTIP60 Steph"  \
 -out /home/roberto/h2az/heatmap/H3_in_ach2az_diffreps_down.pdf
+
+######################################################################################################
+more /home/roberto/references/hg38_tss.bed|grep -w -f 741_genes.txt |grep -P -v "\-\w" > TSS_siK_down_genes.bed
+more /home/roberto/references/hg38_tss.bed|grep -w -f UPPPP.txt |grep -P -v "\-\w" > TSS_siK_Up_genes.bed
+
+cat TSS_siK_Up_genes.bed > TSS_diff_genes.bed
+echo "#Upregulated Genes" >> TSS_diff_genes.bed
+cat TSS_siK_down_genes.bed >> TSS_diff_genes.bed
+echo "#Downregulated Genes" >> TSS_diff_genes.bed
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/h2az_siControl.bw \
+/home/roberto/h2az/bw/h2az_siTIP60.bw \
+/home/roberto/h2az/bw/ach2az_siControl.bw \
+/home/roberto/h2az/bw/ach2az_siTIP60.bw \
+-R TSS_diff_genes.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out TSS_diff_genes.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m TSS_diff_genes.mat \
+ --samplesLabel "H2AZ siControl" "H2AZ siTIP60" "acH2AZ siControl" "acH2AZ siTIP60"  \
+-out TSS_diff_genes.pdf
+
+
+
+
+
+
+
+
