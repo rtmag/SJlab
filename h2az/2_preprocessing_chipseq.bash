@@ -337,3 +337,34 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 -m /home/roberto/h2az/heatmap/ach2az_tss_hg38.mat --regionsLabel "Genes" \
  --samplesLabel "acH2AZ siControl" "acH2AZ siTIP60"  \
 -out /home/roberto/h2az/heatmap/ach2az_tss_hg38.pdf
+
+######################################################################################################
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/deepa_hct116/siControl_H3_novogene.bw \
+/home/roberto/h2az/bw/deepa_hct116/siTIP60_H3_novogene.bw \
+/home/roberto/h2az/bw/deepa_hct116/siControl_H3_steph.bw \
+/home/roberto/h2az/bw/deepa_hct116/siTIP60_H3_steph.bw \
+-R /home/roberto/references/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/tss_h3.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Reds \
+-m /home/roberto/h2az/heatmap/tss_h3.mat --regionsLabel "TSS" \
+ --samplesLabel "H3 siControl Novogene" "H3 siTIP60 Novogene" "H3 siControl Steph" "H3 siTIP60 Steph"  \
+-out /home/roberto/h2az/heatmap/tss_h3.pdf
+
+
+computeMatrix reference-point \
+-S \
+/home/roberto/h2az/bw/deepa_hct116/siControl_H3_novogene.bw \
+/home/roberto/h2az/bw/deepa_hct116/siTIP60_H3_novogene.bw \
+/home/roberto/h2az/bw/deepa_hct116/siControl_H3_steph.bw \
+/home/roberto/h2az/bw/deepa_hct116/siTIP60_H3_steph.bw \
+-R /home/roberto/h2az/bed/ach2az_sik_vs_siC_1000w_nsd20_down_deeptools.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 2000 -b 2000 -p max -out /home/roberto/h2az/heatmap/H3_in_ach2az_diffreps_down.mat
+#
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Center" --colorMap Reds \
+-m /home/roberto/h2az/heatmap/H3_in_ach2az_diffreps_down.mat  \
+ --samplesLabel "H3 siControl Novogene" "H3 siTIP60 Novogene" "H3 siControl Steph" "H3 siTIP60 Steph"  \
+-out /home/roberto/h2az/heatmap/H3_in_ach2az_diffreps_down.pdf
