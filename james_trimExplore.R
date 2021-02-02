@@ -62,23 +62,23 @@ brca_clinical$times[brca_clinical$patient.vital_status == "dead"] <- clinical$da
 brca_clinical$patient.vital_status[brca_clinical$patient.vital_status=="Alive"] = 0
 brca_clinical$patient.vital_status[brca_clinical$patient.vital_status=="Dead"] = 1
 
-cdkn2a_patients = expr[rownames(expr) == "CDKN2A",]
+cdkn2a_patients = expr[rownames(expr) == "TRIP12",]
 
 plot(density( cdkn2a_patients ))
 
 brca_clinical <- data.frame(brca_clinical, cdkn2a = NA)
 brca_clinical$patient.vital_status <- as.numeric(brca_clinical$patient.vital_status)
 
-high_cdkn2a<-names(cdkn2a_patients[cdkn2a_patients>5])
+high_cdkn2a<-names(cdkn2a_patients[cdkn2a_patients>8])
 high_cdkn2a <- data.frame( do.call( rbind, strsplit( high_cdkn2a, '-' ) ) )
 high_cdkn2a <- paste(high_cdkn2a[,1],high_cdkn2a[,2],high_cdkn2a[,3],sep="-")
            
-low_cdkn2a<-names(cdkn2a_patients[!cdkn2a_patients>5])
+low_cdkn2a<-names(cdkn2a_patients[!cdkn2a_patients>8])
 low_cdkn2a <- data.frame( do.call( rbind, strsplit( low_cdkn2a, '-' ) ) )
 low_cdkn2a <- paste(low_cdkn2a[,1],low_cdkn2a[,2],low_cdkn2a[,3],sep="-")
    
-brca_clinical[brca_clinical[,2] %in% high_cdkn2a,4] <- "High CDKN2A"
-brca_clinical[brca_clinical[,2] %in% low_cdkn2a,4] <- "Low CDKN2A"
+brca_clinical[brca_clinical[,2] %in% high_cdkn2a,4] <- "High TRIP12"
+brca_clinical[brca_clinical[,2] %in% low_cdkn2a,4] <- "Low TRIP12"
 
 brca_clinical$cdkn2a <- as.factor(brca_clinical$cdkn2a)
 
