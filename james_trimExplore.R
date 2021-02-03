@@ -15,6 +15,13 @@ library("gProfileR")
 library("genefilter")
 library(RTCGA.clinical)
 
+
+################ Cbioportail metadata
+brca_cbio <- read.table("~/Downloads/brca_tcga_pan_can_atlas_2018_clinical_data.tsv",sep="\t",header=TRUE)
+
+
+################
+
 query_TCGA = GDCquery(
   project = "TCGA-BRCA",
   data.category = "Transcriptome Profiling", # parameter enforced by GDCquery
@@ -43,8 +50,14 @@ saveRDS(v,"v_brca_james.rds")
 expr <- v$E
 rownames(expr) <- v$genes[,2]
 
-plot(density(expr[rownames(expr) == "CDKN2A",]))
-plot(density(expr[rownames(expr) == "TRIM32",]))
+par(mfrow = c(1,2))
+#plot(density(expr[rownames(expr) == "CDKN2A",]))
+plot(density(expr[rownames(expr) == "TRIP12",]))
+
+#boxplot(expr[rownames(expr) == "CDKN2A",],ylim=c(-3,10))
+boxplot(expr[rownames(expr) == "TRIP12",])
+
+
 
 
 
@@ -83,3 +96,23 @@ brca_clinical[brca_clinical[,2] %in% low_cdkn2a,4] <- "Low TRIP12"
 brca_clinical$cdkn2a <- as.factor(brca_clinical$cdkn2a)
 
 kmTCGA(brca_clinical, explanatory.names = "cdkn2a",  pval = TRUE, risk.table=FALSE,conf.int=F, palette = c("red","blue"))
+
+
+
+#######
+
+boxplot_data <- data.frame(Metastasis =  c(rep("M0\n1018 Samples",length(expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M0"]) ), 
+										   rep("M1\n25 Samples", length(expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M1"]) ) ),
+                            Expression = c( expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M0"], 
+                                            expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M1"] ) ) 
+
+boxplot_data <- boxplot_data[complete.cases(boxplot_data), ]
+
+par(mfrow = c(1,1))
+pdf("TRIP12_Exp_Metastasis_Boxplot.pdf",height=6,width=4)
+boxplot(  Expression ~ Metastasis , data=boxplot_data, col = "white", main= "TRIP12 Expression", xlab="",xaxt = "n")
+wil.res<-wilcox.test(expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M0"], expr[rownames(expr) == "TRIP12",brca$ajcc_pathologic_m == "M1"] )
+wil.res$p.value
+text(2,9.2,"p-value = 0.144")
+axis(side = 1, at = seq_along(c("M0\n1018 Samples","M1\n25 Samples")), labels = c("M0\n1018 Samples","M1\n25 Samples"), tick = FALSE)
+dev.off()
